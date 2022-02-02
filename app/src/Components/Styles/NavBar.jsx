@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-
-const NavBar = styled.nav`
+export const NavBar = styled.nav`
   background-color: #2c2c2c;
   color: white;
   display: flex;
@@ -30,6 +29,3 @@ const NavBar = styled.nav`
     margin-right: 0.5rem;
   }
 `;
-
-
-export default NavBar;
