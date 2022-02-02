@@ -1,5 +1,5 @@
 import React from 'react';
-import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import DropDown from './DropDown';
 import HomeContainer from './Styles/Home.styles';
 import SearchBar from './SearchBar';
@@ -11,7 +11,9 @@ function Home() {
     <HomeContainer>
       <div className="Landing">
         <div className="DropDownDiv">
-          <i className="LocationIcon">{/* <LocationOnOutlinedIcon /> */}</i>
+          <i className="LocationIcon">
+            <LocationOnOutlinedIcon />
+          </i>
           <DropDown />
         </div>
 
