@@ -1,18 +1,15 @@
 import styled from "styled-components";
 
 const Icon = styled.i`
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 20%;
-  border: 1px solid ${props => props.color};
+  background-color: ${props => props.color};
   display: flex;
   justify-content: center;
   align-items: center;
   & svg{
     fill: white;
-  }
-  &:hover{
-  background-color: ${props => props.color};
   }
 `;
 
