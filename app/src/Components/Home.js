@@ -6,8 +6,10 @@ import SearchBar from './SearchBar';
 import Card from './Card';
 import Footer from './Footer';
 
-function Home() {
+function Home(props) {
+  console.log(props.something);
   return (
+
     <HomeContainer>
       <div className="Landing">
         <div className="DropDownDiv">
@@ -41,5 +43,4 @@ function Home() {
     </HomeContainer>
   );
 }
-
 export default Home;
