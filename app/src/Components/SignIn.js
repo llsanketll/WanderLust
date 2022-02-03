@@ -1,64 +1,107 @@
-import styled from 'styled-components';
+import React from 'react';
+import GoogleIcon from '@mui/icons-material/Google';
+import { SignInContainer, ButtonContainer } from './Styles/SignIn.styles';
 
 function SignIn() {
   return (
-    <main>
+    <SignInContainer>
       {/* creating account's main body */}
-      <div class="app">
-        <div class="signin-container">
-          {/* creating square box in middle */}
-          <div class="signin-container__form">
-            {/* creating a box for websiteLogo */}
-            <div class="signin-logo">WanderlustLogo/Name</div>
-            {/* creating a box for signin form */}
-            <div class="signin-form__layout">
-              {/* creating signin title */}
-              <div class="signin-form__title">
-                <span>Sign in to your account</span>
-              </div>
-              {/* creating signin form */}
-              <div class="signin-form_body">
-                <form>
-                  <div class="Email_container">
-                    <div class="Email_title">
-                      <label for="Email">Email</label>
-                    </div>
-                    <div class="Email__input">
-                      <input type="email" name="Email" id="Email" />
-                    </div>
-                  </div>
-                  <div class="signin-form__padding"></div>
 
-                  <div class="Password_container">
-                    <div class="Password_title">
-                      <label for="Password">Password</label>
-                    </div>
-                    <a name="reset" href="#">
-                      <div class="Password_forgot">Forgot Password? </div>
+      <div className="signin-container box-root">
+        {/* creating square box in middle */}
+        <div className="signin-container__form box-root">
+          {/* creating a box for websiteLogo */}
+          <div className="signin-logo box-root">#logo</div>
+          {/* creating a box for signin form */}
+          <div className="signin-form__layout">
+            {/* creating signin title */}
+            <div className="signin-form__title margin_top20">
+              <span>Sign in to your account</span>
+            </div>
+            {/* creating signin form */}
+            <div className="signin-form_body margin_top20">
+              <form>
+                <div className="email_container margin_top12">
+                  <div className="box-root margin_top12">
+                    <label htmlFor="Email" required className="input_title">
+                      <span>Email</span>
+                    </label>
+                  </div>
+
+                  <input
+                    type="email"
+                    name="Email"
+                    id="Email"
+                    required
+                    className="input_content margin_top12"
+                  />
+                </div>
+                <div className="padding_top32 box-root"></div>
+
+                <div className="password_container margin_top12">
+                  <div className="password_title margin_top12">
+                    <label htmlFor="Password" required className="input_title">
+                      Password
+                    </label>
+                    <a name="reset" href="#" align>
+                      Forgot Password?
                     </a>
-                    <div class="Password__input">
-                      <input type="password" name="Password" id="Password" />
+                  </div>
+
+                  <input
+                    type="password"
+                    name="Password"
+                    id="Password"
+                    required
+                    className="input_content margin_top12"
+                  />
+                </div>
+
+                <div className="padding_top32 box-root"></div>
+
+                <div className="button_container">
+                  <button name="signin-form__continue_button" type="submit">
+                    <span>Continue</span>
+                  </button>
+                </div>
+
+                <div className="signin-option__social">
+                  <div className="signin-option__social-divider">
+                    <div className="social-divider-line"></div>
+                    <span class="social-divider-text">or use one of these</span>
+                    <div className="social-divider-line"></div>
+                  </div>
+                </div>
+
+                <div className="signin-option__social-appIconContainer">
+                  {/* link to fetch Google ID */}
+
+                  <a
+                    href="#"
+                    class="social-appIcons"
+                    title="Sign In with Google account"
+                  >
+                    <div class="social-appIcon-image">
+                      <GoogleIcon />
                     </div>
-                  </div>
-                  <div class="signin-form__padding"></div>
-                  <div class="signin-form__continueButton">
-                    <button
-                      name="signin-form__continueButton"
-                      type="submit"
-                      style="color: rgb(255,255,255);"
-                    >
-                      Continue
-                    </button>
-                  </div>
-                </form>
-              </div>
+                  </a>
+                </div>
+              </form>
             </div>
           </div>
+          <div className="signin-form__register-link">
+            <span>
+              Don't have an account?{' '}
+              <a href="#" className="register_link">
+                Create one.
+              </a>
+            </span>
+          </div>
+          <div className="signin-form__footer padding_top32"></div>
+          <div className="signin-form__footer-spacer margin_top20"></div>
         </div>
-        {/* creating account's footer element */}
-        <div class="account-access_footer"></div>
       </div>
-    </main>
+    </SignInContainer>
   );
 }
 
