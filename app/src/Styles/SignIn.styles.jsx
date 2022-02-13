@@ -73,7 +73,7 @@ export const SignInContainer = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  & buttton {
+  & button {
     font-size: 16px;
   }
   & a {
@@ -109,7 +109,6 @@ export const SignInContainer = styled.div`
     width: 100%;
     border: 0;
     border-radius: 4px;
-    width: 100%;
     outline: none;
     min-height: 48px;
   }

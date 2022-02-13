@@ -23,7 +23,7 @@ function SignIn(props) {
               <form>
                 <div className="email_container margin_top12">
                   <div className="box-root margin_top12">
-                    <label htmlFor="Email" required className="input_title">
+                    <label htmlFor="Email" className="input_title">
                       <span>Email</span>
                     </label>
                   </div>
@@ -36,11 +36,11 @@ function SignIn(props) {
                     className="input_content margin_top12"
                   />
                 </div>
-                <div className="padding_top32 box-root"></div>
+                <div className="padding_top32 box-root" />
 
                 <div className="password_container margin_top12">
                   <div className="password_title margin_top12">
-                    <label htmlFor="Password" required className="input_title">
+                    <label htmlFor="Password" className="input_title">
                       Password
                     </label>
                     <a name="reset" href="#" align="true">
@@ -57,7 +57,7 @@ function SignIn(props) {
                   />
                 </div>
 
-                <div className="padding_top32 box-root"></div>
+                <div className="padding_top32 box-root" />
 
                 <div className="button_container">
                   <button name="signin-form__continue_button" type="submit">
@@ -70,6 +70,7 @@ function SignIn(props) {
                     <div className="social-divider-line"></div>
                     <span className="social-divider-text">or use one of these</span>
                     <div className="social-divider-line"></div>
+
                   </div>
                 </div>
 
@@ -83,6 +84,7 @@ function SignIn(props) {
                   >
                     <div className="social-appIcon-image"
                     >
+
                       <GoogleIcon />
                     </div>
                   </div>
@@ -98,12 +100,12 @@ function SignIn(props) {
               </a>
             </span>
           </div>
-          <div className="signin-form__footer padding_top32"></div>
-          <div className="signin-form__footer-spacer margin_top20"></div>
+          <div className="signin-form__footer padding_top32" />
+          <div className="signin-form__footer-spacer margin_top20" />
         </div>
       </div>
     </SignInContainer>
-  );
+  )
 }
 
 export default SignIn;
