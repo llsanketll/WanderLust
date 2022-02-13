@@ -7,7 +7,7 @@ import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import { useNavigate } from "react-router-dom";
 
-import { NavBar } from './Styles/NavBar.styles';
+import { NavBar } from '../Styles/NavBar.styles';
 import Icon from './Icon';
 import Button from './Button';
 
@@ -22,7 +22,7 @@ function NavPane(props) {
       </ul>
 
       <ul className="MiddlePart">
-        <li>
+        <li onClick={() => navigate("/hotels")}>
           <Icon color="#FFC187">
             <HotelOutlinedIcon />
           </Icon>

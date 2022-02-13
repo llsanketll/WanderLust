@@ -1,4 +1,4 @@
-import StyledButton from "./Styles/Button.styles";
+import StyledButton from "../Styles/Button.styles";
 
 function Button(props)
 {

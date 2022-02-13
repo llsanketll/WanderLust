@@ -153,6 +153,7 @@ export const SignInContainer = styled.div`
   }
   & .social-appIcons {
     display: flex;
+    cursor:pointer;
     padding: 23px;
     border: 1px solid #d8d8d8;
     width: 72px;

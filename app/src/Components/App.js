@@ -1,7 +1,7 @@
-import './Styles/App.css';
-import Home from './Home.js';
+import '../Styles/App.css';
+import Home from '../Pages/Home.js';
 import NavPane from './NavBar.js';
-import SignIn from './SignIn.js';
+import SignIn from '../Pages/SignIn.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Firebase imports
@@ -9,6 +9,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react'
+import Hotels from '../Pages/Hotels';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g",
@@ -54,7 +55,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavPane user />
+      <NavPane user = {user} />
       <Routes>
         <Route
           exact
@@ -64,7 +65,12 @@ function App() {
         <Route
           exact
           path={process.env.PUBLIC_URL + "/signin"}
-          element={<SignIn google={SignInWithGoogle} />}
+          element={<SignIn SignInWithGoogle={SignInWithGoogle} />}
+        />
+        <Route
+        exact
+        path = {process.env.PUBLIC_URL + "/hotels"}
+        element= {<Hotels/>}
         />
       </Routes>
     </BrowserRouter>

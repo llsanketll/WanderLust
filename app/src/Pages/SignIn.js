@@ -1,58 +1,11 @@
-import SignInContainer from "./Styles/SignIn.styles";
 import React from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
-import { SignInContainer, ButtonContainer } from './Styles/SignIn.styles';
+import { SignInContainer, ButtonContainer } from '../Styles/SignIn.styles';
 
 function SignIn(props) {
   return (
     <SignInContainer>
       {/* creating account's main body */}
-      <div className="app">
-        <div className="signin-container">
-          {/* creating square box in middle */}
-          <div className="signin-container__form">
-            {/* creating a box for websiteLogo */}
-            <div className="signin-logo">WanderlustLogo/Name</div>
-            {/* creating a box for signin form */}
-            <div className="signin-form__layout">
-              {/* creating signin title */}
-              <div className="signin-form__title">
-                <span>Sign in to your account</span>
-              </div>
-              {/* creating signin form */}
-              <div className="signin-form_body">
-                <form>
-                  <div className="Email_container">
-                    <div className="Email_title">
-                      <label htmlFor="Email">Email</label>
-                    </div>
-                    <div className="Email__input">
-                      <input type="email" name="Email" id="Email" />
-                    </div>
-                  </div>
-                  <div className="signin-form__padding"></div>
-
-                  <div className="Password_container">
-                    <div className="Password_title">
-                      <label htmlFor="Password">Password</label>
-                    </div>
-                    <a name="reset" href="#">
-                      <div className="Password_forgot">Forgot Password? </div>
-                    </a>
-                    <div className="Password__input">
-                      <input type="password" name="Password" id="Password" />
-                    </div>
-                  </div>
-                  <div className="signin-form__padding"></div>
-                  <div className="signin-form__continueButton">
-                    <button
-                      name="signin-form__continueButton"
-                      type="submit"
-                    >
-                      Continue
-                    </button>
-
-                    <button onClick={props.google}>Sign In with Google</button>
 
       <div className="signin-container box-root">
         {/* creating square box in middle */}
@@ -90,7 +43,7 @@ function SignIn(props) {
                     <label htmlFor="Password" required className="input_title">
                       Password
                     </label>
-                    <a name="reset" href="#" align>
+                    <a name="reset" href="#" align="true">
                       Forgot Password?
                     </a>
                   </div>
@@ -115,7 +68,7 @@ function SignIn(props) {
                 <div className="signin-option__social">
                   <div className="signin-option__social-divider">
                     <div className="social-divider-line"></div>
-                    <span class="social-divider-text">or use one of these</span>
+                    <span className="social-divider-text">or use one of these</span>
                     <div className="social-divider-line"></div>
                   </div>
                 </div>
@@ -123,15 +76,16 @@ function SignIn(props) {
                 <div className="signin-option__social-appIconContainer">
                   {/* link to fetch Google ID */}
 
-                  <a
-                    href="#"
-                    class="social-appIcons"
-                    title="Sign In with Google account"
+                  <div
+                    onClick={(e) => props.SignInWithGoogle(e)}
+                    className="social-appIcons"
+                  // title="Sign In with Google account"
                   >
-                    <div class="social-appIcon-image">
+                    <div className="social-appIcon-image"
+                    >
                       <GoogleIcon />
                     </div>
-                  </a>
+                  </div>
                 </div>
               </form>
             </div>
@@ -147,9 +101,6 @@ function SignIn(props) {
           <div className="signin-form__footer padding_top32"></div>
           <div className="signin-form__footer-spacer margin_top20"></div>
         </div>
-        {/* creating account's footer element */}
-        <div className="account-access_footer"></div>
-=======
       </div>
     </SignInContainer>
   );
