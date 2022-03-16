@@ -10,15 +10,23 @@ import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css' // Updating 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2xhbXNhbCIsImEiOiJja3psNmF6Y2QyNWl4Mm9uMm54c2c1YmhqIn0.Qkx2T5_F6Hn_hudF3yTBWQ';
 
 function MapBox() {
+  const map = useRef(null);
   const mapContainer = useRef(null);
   const directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
-    unit: 'metric'
+    unit: 'metric',
+    profile: 'mapbox/driving',
+    controls: {
+      // inputs: false,
+      instructions: false,
+      profileSwitcher: false,
+      wayname: false,
+      geocoder: false,
+    }
   });
-  const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  const [lng, setLng] = useState(85.32);
+  const [lat, setLat] = useState(27.71);
+  const [zoom, setZoom] = useState(12);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -29,13 +37,7 @@ function MapBox() {
       zoom: zoom
     });
     map.current.addControl(directions, 'top-left');
-    // map.addControl(
-    //   new MapboxDirections({
-    //     accessToken: mapboxgl.accessToken,
-    //     unit: 'metric',
-    //   }),
-    //   'top-left'
-    // )
+
 
   });
 
