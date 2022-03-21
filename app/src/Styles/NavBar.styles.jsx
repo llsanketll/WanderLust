@@ -12,7 +12,7 @@ export const NavBar = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 100;
 
 
   & > ul {
@@ -40,8 +40,14 @@ export const NavBar = styled.nav`
     flex-direction: column;
   }
 
-  & .MiddlePart > li{
+  & .MiddlePart >li{
     margin: 0 2.5rem 0 2.5rem;
+    padding: 0 1rem 0 1rem;
+  }
+
+  & .MiddlePart > button{
+    margin: 0 2.5rem 0 2.5rem;
+    padding: 0 1rem 0 1rem;
   }
 
   & .LastPart li{

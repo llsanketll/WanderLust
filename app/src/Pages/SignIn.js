@@ -109,7 +109,9 @@ function SignIn() {
                     className="social-appIcons"
                     // title="Sign In with Google account"
                   >
-                    <div className="social-appIcon-image">
+                    <div className="social-appIcon-image"
+                    >
+
                       <GoogleIcon />
                     </div>
                   </div>
@@ -127,7 +129,7 @@ function SignIn() {
         </div>
       </div>
     </SignInContainer>
-  );
+  )
 }
 
 export default SignIn;

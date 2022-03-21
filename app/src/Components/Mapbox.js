@@ -6,19 +6,30 @@ import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css' // Updating node module will keep css up to date.
+import 'mapbox-gl';
 
+// mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2xhbXNhbCIsImEiOiJja3psNmF6Y2QyNWl4Mm9uMm54c2c1YmhqIn0.Qkx2T5_F6Hn_hudF3yTBWQ';
 
-function MapBox() {
+function MapBox(props) {
+  const map = useRef(null);
   const mapContainer = useRef(null);
+
   const directions = new MapboxDirections({
     accessToken: mapboxgl.accessToken,
-    unit: 'metric'
+    unit: 'metric',
+    profile: 'mapbox/driving',
+    controls: {
+      // inputs: false,
+      instructions: false,
+      profileSwitcher: false,
+      wayname: false,
+      geocoder: false,
+    }
   });
-  const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  const [lng, setLng] = useState(85.32);
+  const [lat, setLat] = useState(27.71);
+  const [zoom, setZoom] = useState(12);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -28,15 +39,18 @@ function MapBox() {
       center: [lng, lat],
       zoom: zoom
     });
-    map.current.addControl(directions, 'top-left');
-    // map.addControl(
-    //   new MapboxDirections({
-    //     accessToken: mapboxgl.accessToken,
-    //     unit: 'metric',
-    //   }),
-    //   'top-left'
-    // )
 
+    const marker = new mapboxgl.Marker({
+      color: "#0071C2",
+    }).setLngLat([lng, lat])
+      .addTo(map.current);
+
+    map.current.on('mousedown', (e) => {
+      marker.setLngLat([e.lngLat.lng, e.lngLat.lat]);
+    })  
+
+    if (props.directions)
+      map.current.addControl(directions, 'top-left');
   });
 
   return (

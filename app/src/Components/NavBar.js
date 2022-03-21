@@ -29,19 +29,19 @@ function NavPane() {
           </Icon>
           <span>Hotels</span>
         </li>
-        <li>
+        <li onClick={(e) => HandleClick(e, "community")} className="community">
           <Icon color="#EB5757">
             <RestaurantMenuOutlinedIcon />
           </Icon>
-          <span>Resturant</span>
+          <span>Community</span>
         </li>
-        <li>
+        <li onClick={(e) => HandleClick(e, "nature")} className ="nature">
           <Icon color="#8DE8C7">
             <LandscapeOutlinedIcon />
           </Icon>
           <span>Nature</span>
         </li>
-        <li>
+        <li onClick={(e) => HandleClick(e, "support")} className="support">
           <Icon color="#8DBCE8">
             <SupportAgentOutlinedIcon />
           </Icon>
