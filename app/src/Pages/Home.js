@@ -8,7 +8,6 @@ import Footer from '../Components/Footer';
 import MapBox from '../Components/Mapbox';
 
 function Home(props) {
-  console.log(props.something);
   return (
 
     <HomeContainer>
@@ -21,12 +20,12 @@ function Home(props) {
         </div>
 
         <div className="SearchBarDiv">
-          <SearchBar />
+          <SearchBar color="#4e4e4e"  placeholder="Search for popular places..." width = "30vw" />
         </div>
 
-        <div className="GoogleMap">
+        <div className="MapBox-Container">
           {/* This is just a place holder for google maps api */}
-          <MapBox/>
+          <MapBox directions/>
         </div>
       </div>
 

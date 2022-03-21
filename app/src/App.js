@@ -1,7 +1,7 @@
-import '../Styles/App.css';
-import Home from '../Pages/Home.js';
-import NavPane from './NavBar.js';
-import SignIn from '../Pages/SignIn.js';
+import './Styles/App.css';
+import Home from './Pages/Home.js';
+import NavPane from './Components/NavBar.js';
+import SignIn from './Pages/SignIn.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Firebase imports
@@ -9,7 +9,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react'
-import Hotels from '../Pages/Hotels';
+import Hotels from './Pages/Hotels';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g",

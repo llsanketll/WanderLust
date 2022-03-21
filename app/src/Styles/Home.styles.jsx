@@ -38,7 +38,7 @@ const HomeContainer = styled.div`
     border-radius: 3rem;
   }
 
-  & .GoogleMap img{
+  & .MapBox-Container img{
     width: 100%;
     height: 20rem;
     border-radius: 2rem;

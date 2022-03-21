@@ -1,12 +1,11 @@
 import SearchBarContainer from '../Styles/SearchBar.style';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
-function SearchBar()
-{
-  return(
-    <SearchBarContainer>
-      <input type = "text" placeholder = "Search for a place"/>
-      <i><SearchOutlinedIcon/></i>
+function SearchBar(props) {
+  return (
+    <SearchBarContainer {...props}>
+      <input type="text" placeholder={props.placeholder} />
+      <i><SearchOutlinedIcon /></i>
     </SearchBarContainer>
   );
 }

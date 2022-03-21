@@ -7,6 +7,7 @@ const MapboxContainer = styled.div`
   border-radius: 1rem;
 }
 
+
 `;
 
 export default MapboxContainer;
