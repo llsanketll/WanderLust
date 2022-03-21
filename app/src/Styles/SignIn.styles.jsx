@@ -152,6 +152,7 @@ export const SignInContainer = styled.div`
   }
   & .social-appIcons {
     display: flex;
+    cursor:pointer;
     padding: 23px;
     border: 1px solid #d8d8d8;
     width: 72px;
@@ -182,9 +183,3 @@ export const SignInContainer = styled.div`
   }
 `;
 
-// export const ButtonContainer = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-//   border-radius: 4px;
-// `;

@@ -1,13 +1,16 @@
 import React from 'react';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import DropDown from './DropDown';
-import HomeContainer from './Styles/Home.styles';
-import SearchBar from './SearchBar';
-import Card from './Card';
-import Footer from './Footer';
+import DropDown from '../Components/DropDown';
+import HomeContainer from '../Styles/Home.styles';
+import SearchBar from '../Components/SearchBar';
+import Card from '../Components/Card';
+import Footer from '../Components/Footer';
+import MapBox from '../Components/Mapbox';
 
-function Home() {
+function Home(props) {
+  console.log(props.something);
   return (
+
     <HomeContainer>
       <div className="Landing">
         <div className="DropDownDiv">
@@ -23,10 +26,7 @@ function Home() {
 
         <div className="GoogleMap">
           {/* This is just a place holder for google maps api */}
-          <img
-            src="https://i.ibb.co/zF2pqPL/Google-Maps.png"
-            alt="Google Maps"
-          />
+          <MapBox/>
         </div>
       </div>
 
@@ -41,5 +41,4 @@ function Home() {
     </HomeContainer>
   );
 }
-
 export default Home;

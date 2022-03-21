@@ -53,6 +53,12 @@ const HomeContainer = styled.div`
     margin-left: 6.5rem;
     margin-top: 5rem;
   }
+/* 
+  & .mapboxgl-canvas{
+    height: 400px;
+    width: 200px;
+    border-radius: 20px;
+  } */
 `;
 
 export default HomeContainer;

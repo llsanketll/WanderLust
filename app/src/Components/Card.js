@@ -1,4 +1,4 @@
-import CardContainer from "./Styles/Card.style";
+import CardContainer from "../Styles/Card.style";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from "@mui/icons-material/Star";
 

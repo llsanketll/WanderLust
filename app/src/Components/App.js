@@ -1,19 +1,46 @@
-import './Styles/App.css';
-import Home from './Home.js';
+import '../Styles/App.css';
+import Home from '../Pages/Home.js';
 import NavPane from './NavBar.js';
-import SignIn from './SignIn.js';
-import MapDirection from './MapDirection.js';
+import Hotels from '../Pages/Hotels';
+import SignIn from '../Pages/SignIn.js';
+import SignUp from '../Pages/SignUp.js';
+import PostExperience from '../Pages/PostExperience.js'
+import { AuthProvider } from '../AuthContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
+    <AuthProvider>
       <NavPane />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/map" element={<MapDirection />} />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + '/'}
+          element={<Home something={process.env.PUBLIC_URL} />}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + '/signin'}
+          element={<SignIn something={process.env.PUBLIC_URL} />}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + '/signup'}
+          element={<SignUp something={process.env.PUBLIC_URL} />}
+        />
+
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + '/hotels'}
+          element={<Hotels />}
+        />
+        <Route
+          exact path={process.env.PUBLIC_URL + '/postexp' }
+          element={<PostExperience />}
+          />
       </Routes>
+        </AuthProvider>
     </BrowserRouter>
   );
 }

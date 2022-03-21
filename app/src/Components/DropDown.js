@@ -1,4 +1,4 @@
-import DropDownContainer from "./Styles/DropDown.styles"
+import DropDownContainer from "../Styles/DropDown.styles"
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 function DropDown() {
