@@ -50,11 +50,11 @@ function NavPane(props) {
           </Icon>
           <span>Community</span>
         </li>
-        <li onClick={(e) => HandleClick(e, "nature")} className ="nature">
+        <li onClick={(e) => HandleClick(e, "activities")} className ="activities">
           <Icon color="#8DE8C7">
             <LandscapeOutlinedIcon />
           </Icon>
-          <span>Nature</span>
+          <span>Activities</span>
         </li>
         <li onClick={(e) => HandleClick(e, "support")} className="support">
           <Icon color="#8DBCE8">

@@ -11,7 +11,7 @@ const ButtonContainer = styled.button`
   align-items: center;
   justify-content: center;
   color: ${props => (props.variant == "outlined" ? props.color : "white")};
-
+  cursor: pointer;
 `;
 
 export default ButtonContainer;

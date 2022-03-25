@@ -1,12 +1,16 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxContainer from '../Styles/Mapbox.styles';
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
+
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css' // Updating node module will keep css up to date.
-import 'mapbox-gl';
+
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
+
 
 // mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2xhbXNhbCIsImEiOiJja3psNmF6Y2QyNWl4Mm9uMm54c2c1YmhqIn0.Qkx2T5_F6Hn_hudF3yTBWQ';
@@ -40,6 +44,15 @@ function MapBox(props) {
       zoom: zoom
     });
 
+    const geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: mapboxgl.accessToken, // Set the access token
+      mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    });
+
+    // Add the geocoder to the map
+    map.current.addControl(geocoder);
+
     const marker = new mapboxgl.Marker({
       color: "#0071C2",
     }).setLngLat([lng, lat])
@@ -47,7 +60,7 @@ function MapBox(props) {
 
     map.current.on('mousedown', (e) => {
       marker.setLngLat([e.lngLat.lng, e.lngLat.lat]);
-    })  
+    })
 
     if (props.directions)
       map.current.addControl(directions, 'top-left');

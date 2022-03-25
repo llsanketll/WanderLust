@@ -10,6 +10,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react'
 import Hotels from './Pages/Hotels';
+import Community from './Pages/Community';
+import BlogPost from './Pages/BlogPost';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g",
@@ -55,7 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavPane user = {user} />
+      <NavPane user={user} />
       <Routes>
         <Route
           exact
@@ -68,9 +70,20 @@ function App() {
           element={<SignIn SignInWithGoogle={SignInWithGoogle} />}
         />
         <Route
-        exact
-        path = {process.env.PUBLIC_URL + "/hotels"}
-        element= {<Hotels/>}
+          exact
+          path={process.env.PUBLIC_URL + "/hotels"}
+          element={<Hotels />}
+        />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/community"}
+          element={<Community />}
+        />
+
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/blog/1"}
+          element={<BlogPost />}
         />
       </Routes>
     </BrowserRouter>
