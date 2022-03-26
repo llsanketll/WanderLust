@@ -47,8 +47,8 @@ function BlogPost(props) {
   const HandleCommentButtonClicked = (e) => {
     e.preventDefault();
     window.scrollTo(0, document.body.scrollHeight);
-    document.querySelector('.BlogPost-Comment-Input input').focus();
-  };
+    document.querySelector(".BlogPost-Comment-Input input").focus();
+  }
 
   const HandleImageClick = (e) => {
     //If images doesn't have an active image
