@@ -23,6 +23,7 @@ export const NavBar = styled.nav`
     display: flex;
     align-items: center;
     list-style: none;
+    border-radius: 0.5rem;
     cursor:pointer;
   }
 
