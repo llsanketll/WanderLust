@@ -22,63 +22,66 @@ export function DatabaseProvider({ children }) {
   const [currentData, setData] = useState();
   const [loading, setLoading] = useState(true);
 
-  const userCollectionRef = collection(db, 'User');
-  //const userCollectionRefQuery = query(collection(db,'User') where ("user_id"))
-  const postCollectionRef = collection(db, 'Post');
-
-  const getUserData = async (passed_id) => {
-    const docs = await getDocs(userCollectionRef);
-    docs.forEach((doc) => {
-      const userData = doc.data();
-
-      if (userData.user_id === passed_id) {
-        return userData;
-      } else {
-        console.log('worng');
-      }
-    });
-  };
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Post'), (snapshot) => {
-      const newData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setData(newData);
-      setLoading(false);
-    });
-    return unsubscribe;
-  }, []);
-
-  function addPost(id, landmark, title, description) {
-    const postRef = doc(
-      db,
-      'UserID',
-      'Landmark',
-      'Title',
-      'Description',
-      'Date'
-    );
-    return setDoc(
-      postRef,
-      { UserID: id },
-      { Landmark: landmark },
-      { Title: title },
-      { Description: description },
-      { Date: Date.now() }
-    );
+  const getAllPosts = async () => {
+    const collectionSnapShot = collection(db, 'Post');
+    const docs = await getDocs(collectionSnapShot);
+    return docs;
+    
   }
 
-  const value = {
-    currentData,
-    addPost,
-    getUserData,
-  };
+  const getPost = async (post_id) => {
+      const post = await getDoc(doc(db, `Post/${post_id}`));
+      return post;
+    }
 
-  return (
-    <DatabaseContext.Provider value={value}>
-      {!loading && children}
-    </DatabaseContext.Provider>
-  );
-}
+    const getUserData = async(user_id) => {
+      const dataSnapShot = getDoc(doc(db, `User/${user_id}`));
+      return dataSnapShot;
+    };
+
+    useEffect(() => {
+      const unsubscribe = onSnapshot(collection(db, 'Post'), (snapshot) => {
+        const newData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(newData);
+        setLoading(false);
+      });
+      return unsubscribe;
+    }, []);
+
+    async function addPost(dataToUpload) {
+      try {
+        const docRef = await addDoc(
+          collection(db, 'Post'),
+          {
+            user_id: dataToUpload.user_id,
+            landmark: dataToUpload.landmark,
+            title: dataToUpload.title,
+            description: dataToUpload.description,
+            date: dataToUpload.date,
+            likes: 0,
+            photos: dataToUpload.photos
+          }
+        );
+      }
+      catch (e) {
+        console.error("Error adding document to firestore: ", e);
+      }
+    }
+
+    const value = {
+      currentData,
+      addPost,
+      getPost,
+      getUserData,
+      getAllPosts
+    };
+
+    return (
+      <DatabaseContext.Provider value={value}>
+        {!loading && children}
+      </DatabaseContext.Provider>
+    );
+  }

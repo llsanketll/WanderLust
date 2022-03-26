@@ -3,13 +3,14 @@ import PostCardContainer from "./PostCard.styles";
 
 const CommunityContainer = styled.div`
   padding: 1rem;
-  & img {
+  overflow-x: hidden;
+  & .Community-Place-Image {
     height: 15rem;
     width: 15rem;
     border-radius: 50%;
     object-fit: cover;
   }
-  & h1 {
+  & .Community-Place-Title {
     position: absolute;
     left: 20rem;
     top: 10rem;

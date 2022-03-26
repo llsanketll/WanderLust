@@ -4,25 +4,14 @@ import PersonIcon from '@mui/icons-material/Person';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
 import { useDatabase } from '../DatabaseContext';
+
 function PostCard(props) {
   const navigate = useNavigate();
   const { getUserData } = useDatabase();
 
-  const HandleClick = (e) => {
-    e.preventDefault();
-    navigate('/blog/' + props.id);
-  };
-
-  // const userName = getUserData(props.id);
-  const userData = getUserData('UC7cwWwOL4gdVkxaPwfZQjp1cBy2').then((result) =>
-    console.log(result)
-  );
-
   const getDays = (date) => {
-    const postDate = new Date(1970, 0, 1);
-    postDate.setSeconds(date.seconds);
+    const postDate = new Date(date);
     if (postDate.getDate() === new Date().getDate()) {
       return "Today";
     }
@@ -36,13 +25,13 @@ function PostCard(props) {
 
 
   return (
-    <PostCardContainer onClick={HandleClick}>
+    <PostCardContainer onClick={() => props.handleClick(props.post_id)}>
       <div className="PostCard-Main">
         <h2 className="PostCard-Title">{props.title}</h2>
         <div className="PostCard-InfoContainer">
           <div className="PostCard-FlexContainer">
             <PersonIcon />
-            <p>hello</p>
+            <p>{props.name}</p>
           </div>
           <div className="PostCard-FlexContainer">
             <LocationOnIcon />

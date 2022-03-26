@@ -1,14 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-//import DbPost from '../DbPost';
-//import { db } from '../firebase';
-//import { collection, getDocs, onSnapshot } from 'firebase/firestore';
-// import ReactDOM from 'react-dom';
-//import { auth, db } from '../firebase';
 import { useAuth } from '../AuthContext';
 import { useDatabase } from '../DatabaseContext';
-//import { collection, addDoc } from 'firebase/firestore';
-
 import { PostExpContainer } from '../Styles/PostExp.styles';
+import Button from '../Components/Button';
 
 export default function PostExperience() {
   const title = useRef();
@@ -21,25 +15,38 @@ export default function PostExperience() {
 
   const { currentUser } = useAuth();
   const { currentData, addPost } = useDatabase();
+
   async function handleSubmit(e) {
     e.preventDefault();
+    if (title.current.value == '' || landmark.current.value == '' || image.current.value == '' || description.current.value == '')
+    {
+      alert("Fields are empty");
+      return;
+    }
+
+    const dataToUpload = {
+      user_id: currentUser.uid,
+      landmark: landmark.current.value,
+      title: title.current.value,
+      description: description.current.value,
+      date: new Date().getTime(),
+      photos: ["url1", "url2"]
+    }
 
     try {
       setError('');
       setLoading(true);
-      await addPost(
-        currentUser[0].id,
-        landmark.current.value,
-        title.current.value,
-        description.current.value
-      );
+      await addPost(dataToUpload);
+      title.current.value = '';
+      landmark.current.value = '';
+      description.current.value = '';
+      image.current.value = '';
     } catch (error) {
       console.log(error);
     }
 
     setLoading(false);
   }
-  console.log(currentData);
   return (
     <PostExpContainer>
       <div>
@@ -83,9 +90,9 @@ export default function PostExperience() {
             />
           </div>
           <div className="form_content">
-            <button type="submit" className="button" name="post">
+            <Button type="submit" className="button" name="post">
               Post
-            </button>
+            </Button>
           </div>
         </form>
       </div>

@@ -3,15 +3,31 @@ import ButtonContainer from "./Button.styles";
 import CommentCardContainer from "./CommentCard.styles";
 
 const BlogPostConatainer = styled.div`
+  position: absolute;
+  top: 4vw;
+  left: 0;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  
+  & .BlogPost-CloseIcon{
+    position: fixed;
+    top: 8rem;
+    right: 3.5rem;
+    cursor: pointer;
+    & svg{
+      fill: white;
+      transform: scale(3);
+    }
+  }
 
-  & main {
-    width: 100%;
+  & .BlogPost-Top {
+    width: 100vw;
     height: 92vh;
-    background-color: #cacaca;
     display: flex;
     justify-content: center;
     padding: 2rem;
@@ -26,7 +42,7 @@ const BlogPostConatainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
 
-    h1 {
+    .BlogPost-Title {
       font-size: 2rem;
     }
   }
@@ -37,6 +53,7 @@ const BlogPostConatainer = styled.div`
 
     & img {
       width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
     }
     & p {
@@ -165,7 +182,7 @@ const BlogPostConatainer = styled.div`
     background: rgba(0, 0, 0, 0.9);
     z-index: 1;
 
-    & .BlogPost-CloseIcon {
+    & .BlogPost-Image-CloseIcon {
       position: fixed;
       top: 5.5rem;
       right: 2rem;
@@ -180,6 +197,8 @@ const BlogPostConatainer = styled.div`
   & .BlogPost-Comments {
     padding: 3rem;
     width: 80vw;
+    background: white;
+    border-radius: 1rem;
 
     & .BlogPost-Comments-Top {
       display: flex;

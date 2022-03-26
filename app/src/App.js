@@ -5,7 +5,7 @@ import Hotels from './Pages/Hotels';
 import SignIn from './Pages/SignIn.js';
 import SignUp from './Pages/SignUp.js';
 import PostExperience from './Pages/PostExperience.js';
-import BlogPost from './Pages/BlogPost';
+import BlogPost from './Components/BlogPost';
 import Community from './Pages/Community.js';
 import { AuthProvider } from './AuthContext';
 import { DatabaseProvider } from './DatabaseContext';
@@ -48,11 +48,6 @@ function App() {
               exact
               path={process.env.PUBLIC_URL + '/postexp'}
               element={<PostExperience />}
-            />
-            <Route
-              exact
-              path={process.env.PUBLIC_URL + '/blog/1'}
-              element={<BlogPost />}
             />
           </Routes>
         </DatabaseProvider>

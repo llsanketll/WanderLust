@@ -44,7 +44,6 @@ export function AuthProvider({ children }) {
   };
 
   function signup(email, password) {
-    console.log(email);
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
