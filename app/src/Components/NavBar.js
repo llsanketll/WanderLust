@@ -44,7 +44,7 @@ function NavPane() {
 
       {/* Section for Pages */}
       <ul className="MiddlePart">
-        <li onClick={() => navigate('/hotels')}>
+        <li onClick={(e) => HandleClick(e,'/hotels')} className="hotels">
           <Icon color="#FFC187">
             <HotelOutlinedIcon />
           </Icon>
