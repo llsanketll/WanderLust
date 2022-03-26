@@ -12,21 +12,26 @@ function CommentCard(props) {
         <span>1 min ago</span>
       </div>
       <p className="CommentCard-Comment">{props.comment}</p>
-      <button>Reply</button>
+      <button onClick={(e) => {document.querySelector(".CommentCard-Reply-Input input.I" + props.ID).focus()}}>Reply</button>
       {
-        props.replies &&
-        props.replies.length > 1 &&
-        <div className="CommentCard-Replies">
-          {
-            props.replies.map((reply, index) => {
-              return (
-                <div key={index} className="CommentCard-Reply">
-                  <h5>{GetUserName(props.userID)}</h5>
-                  <p>{reply.content}</p>
-                </div>
-              )
-            })
-          }
+        <div className="CommentCard-Replies-Main">
+          <div className="CommentCard-Replies">
+            <div className="CommentCard-Reply-Input">
+              <h4>Reply</h4>
+              <input type="text" placeholder="Write a reply..." className={"I" + props.ID} />
+            </div>
+            {
+              props.replies &&
+              props.replies.map((reply, index) => {
+                return (
+                  <div key={index} className="CommentCard-Reply">
+                    <h5>{GetUserName(props.userID)}</h5>
+                    <p>{reply.content}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
       }
     </CommentCardContainer>

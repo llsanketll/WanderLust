@@ -55,8 +55,6 @@ const BlogPostConatainer = styled.div`
 
   & .BlogPost-Gradiants {
     position: relative;
-    background-color: blue;
-
     & button {
       position: absolute;
       top: 50%;
@@ -70,15 +68,15 @@ const BlogPostConatainer = styled.div`
       border: 3px solid white;
       margin: 0 1rem 0 1rem;
       cursor: pointer;
-      & svg{
-        fill : white;
+      transition: background 0.3s;
+
+      & svg {
+        fill: white;
         transform: scale(1.5);
       }
-      &:hover{
-        background-color: rgba(255, 255, 255, 0.2) ;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
       }
-
-
     }
 
     & > button {
@@ -183,18 +181,52 @@ const BlogPostConatainer = styled.div`
     padding: 3rem;
     width: 80vw;
 
-    & .BlogPost-Comments-Top{
+    & .BlogPost-Comments-Top {
       display: flex;
       justify-content: space-between;
+      margin: 1rem;
     }
-    ${ButtonContainer}
-    {
+    ${ButtonContainer} {
       font-size: 1.2rem;
       border-radius: 0.5rem;
     }
 
     ${CommentCardContainer} {
       margin: 1rem;
+    }
+  }
+
+  & .BlogPost-Comment-Input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-weight: 500;
+    border: 1px solid #737373;
+    box-shadow: 0.3rem 0.3rem 0 rgba(0, 0, 0, 0.2);
+    & img {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    & input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #737373;
+      background-color: transparent;
+      color: black;
+      font-family: "Montserrat", sans-serif;
+      &::placeholder {
+        color: #737373;
+      }
     }
   }
 `;

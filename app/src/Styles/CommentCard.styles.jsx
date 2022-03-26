@@ -35,6 +35,40 @@ const CommentCardContainer = styled.div`
     cursor: pointer;
   }
 
+  & .CommentCard-Replies-Main {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 2rem;
+      height: 4rem;
+      top: -0.5rem;
+      left: 0.9rem;
+      border-left: 2px solid #737373;
+      border-bottom: 2px solid #737373;
+      border-bottom-left-radius: 1rem;
+    }
+  }
+
+  & .CommentCard-Reply-Input {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    & input {
+      margin-top: 0.5rem;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      outline: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: black;
+      padding: 0.8rem;
+      border-radius: 0.6rem;
+    }
+  }
+
   & .CommentCard-Replies {
     position: relative;
     margin-top: 1rem;
@@ -45,18 +79,6 @@ const CommentCardContainer = styled.div`
     max-height: 20rem;
     overflow-x: hidden;
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: 2rem;
-      height: 4rem;
-      top: -0.5rem;
-      left: -2.2rem;
-      border-left: 2px solid #737373;
-      border-bottom: 2px solid #737373;
-      border-bottom-left-radius: 1rem;
-    }
-
     & .CommentCard-Reply {
       &::after {
         content: "";
@@ -65,7 +87,7 @@ const CommentCardContainer = styled.div`
         margin-bottom: 1rem;
         margin-top: 1rem;
       }
-      & p{
+      & p {
         font-size: 0.8rem;
       }
     }
