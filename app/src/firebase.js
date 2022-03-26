@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore} from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 // import { getAnalytics } from "firebase/analytics";
 
@@ -16,20 +16,20 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
   measurementId: process.env.REACT_APP_MEASUREMENT_ID*/
-   apiKey: 'AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g',
-   authDomain: 'wanderlust-b43f0.firebaseapp.com',
-   projectId: 'wanderlust-b43f0',
-   storageBucket: 'wanderlust-b43f0.appspot.com',
-   messagingSenderId: '270953378851',
-   appId: '1:270953378851:web:fc31f3b872474dbb226d96',
-   measurementId: 'G-CETQ2WC186',
+  apiKey: 'AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g',
+  authDomain: 'wanderlust-b43f0.firebaseapp.com',
+  projectId: 'wanderlust-b43f0',
+  storageBucket: 'wanderlust-b43f0.appspot.com',
+  messagingSenderId: '270953378851',
+  appId: '1:270953378851:web:fc31f3b872474dbb226d96',
+  measurementId: 'G-CETQ2WC186',
 };
 
 // Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+const db = getFirestore(app);
 
 // const analytics = getAnalytics(app);
-export { app, auth };
+export { app, auth, db };
