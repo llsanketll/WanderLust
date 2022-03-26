@@ -2,30 +2,30 @@ import React, { useRef, useState } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { SignInContainer } from '../Styles/SignIn.styles';
 import { useAuth } from '../AuthContext';
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
   const emailEl = useRef();
   const passwordEl = useRef();
-  const {signup} = useAuth();
+  const { signup } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState("")
+  const [error, setError] = useState('');
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault(); //prevent form from Refreshing
 
     try {
-      setError("")
-      setLoading(true)
-      await signup(emailEl.current.value, passwordEl.current.value)
-      navigate("/")
+      setError('');
+      setLoading(true);
+      await signup(emailEl.current.value, passwordEl.current.value);
+      navigate('/');
     } catch {
-      setError("Failed to create an account")
+      setError('Failed to create an account');
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -132,4 +132,3 @@ export default function SignUp() {
     </SignInContainer>
   );
 }
-

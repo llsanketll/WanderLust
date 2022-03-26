@@ -1,7 +1,7 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import GoogleIcon from '@mui/icons-material/Google';
 import { SignInContainer } from '../Styles/SignIn.styles';
-import {useAuth} from '../AuthContext';
+import { useAuth } from '../AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
@@ -19,8 +19,7 @@ function SignIn() {
       setError('');
       setLoading(true);
       await signin(emailEl.current.value, passwordEl.current.value);
-    
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
 
@@ -109,9 +108,7 @@ function SignIn() {
                     className="social-appIcons"
                     // title="Sign In with Google account"
                   >
-                    <div className="social-appIcon-image"
-                    >
-
+                    <div className="social-appIcon-image">
                       <GoogleIcon />
                     </div>
                   </div>
@@ -129,7 +126,7 @@ function SignIn() {
         </div>
       </div>
     </SignInContainer>
-  )
+  );
 }
 
 export default SignIn;

@@ -1,30 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import { useAuth } from '../AuthContext';
+
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { NavBar } from '../Styles/NavBar.styles';
 import Icon from '../Styles/Icon.styles';
 import Button from './Button';
 
 function NavPane() {
-  const { currentUser } = useAuth();
-  const navigate = useNavigate();
+  let classname, siteButton;
+  const { currentUser } = useAuth(); //recent user from auth context
+  const navigate = useNavigate(); //navigate to different pages
+  const location = useLocation();
+
+  // function to navigate to different pages
   const HandleClick = (e, url) => {
     navigate(url);
   };
+  //
+  useEffect(() => {
+    classname = window.location.pathname.substring(1);
+    document.querySelectorAll('.MiddlePart > li').forEach((element) => {
+      if (classname && classname == element.className)
+        element.style.background = 'rgba(255, 255, 255, 0.5)';
+      else element.style.background = 'none';
+    });
+  }, [location]);
+
   return (
     <NavBar>
+      {/* Section for Logo */}
       <ul className="FirstPart">
         <li onClick={() => navigate('/')}>
           <span>Wander</span> <p>Lust</p>{' '}
         </li>
       </ul>
 
+      {/* Section for Pages */}
       <ul className="MiddlePart">
         <li onClick={() => navigate('/hotels')}>
           <Icon color="#FFC187">
@@ -38,11 +56,14 @@ function NavPane() {
           </Icon>
           <span>Community</span>
         </li>
-        <li onClick={(e) => HandleClick(e, 'nature')} className="nature">
+        <li
+          onClick={(e) => HandleClick(e, 'activities')}
+          className="activities"
+        >
           <Icon color="#8DE8C7">
             <LandscapeOutlinedIcon />
           </Icon>
-          <span>Nature</span>
+          <span>Activities</span>
         </li>
         <li onClick={(e) => HandleClick(e, 'support')} className="support">
           <Icon color="#8DBCE8">
@@ -52,6 +73,7 @@ function NavPane() {
         </li>
       </ul>
 
+      {/* Section for SignIn or UserProfile */}
       <ul className="LastPart">
         {currentUser ? (
           <>

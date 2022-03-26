@@ -1,29 +1,39 @@
-import PostCardContainer from "../Styles/PostCard.styles";
+import PostCardContainer from '../Styles/PostCard.styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import { useDatabase } from '../DatabaseContext';
 function PostCard(props) {
   const navigate = useNavigate();
+  const { getUserData } = useDatabase();
+
   const HandleClick = (e) => {
     e.preventDefault();
-    navigate("/blog/" + props.id);
-  }
+    navigate('/blog/' + props.id);
+  };
 
+  // const userName = getUserData(props.id);
+  const userData = getUserData('UC7cwWwOL4gdVkxaPwfZQjp1cBy2').then((result) =>
+    console.log(result)
+  );
+
+  // const userName = 'Hello';
+  //getUserData();
   return (
     <PostCardContainer onClick={HandleClick}>
       <div className="PostCard-Main">
-        <h2 className="PostCard-Title">Title</h2>
+        <h2 className="PostCard-Title">{props.title}</h2>
         <div className="PostCard-InfoContainer">
           <div className="PostCard-FlexContainer">
             <PersonIcon />
-            <p>{props.name}</p>
+            <p>hello</p>
           </div>
           <div className="PostCard-FlexContainer">
             <LocationOnIcon />
-            <p>{props.location}</p>
+            <p>{props.landmark}</p>
           </div>
         </div>
       </div>
@@ -41,7 +51,7 @@ function PostCard(props) {
         </div>
       </div>
     </PostCardContainer>
-  )
+  );
 }
 
 export default PostCard;
