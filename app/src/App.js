@@ -5,30 +5,16 @@ import SignIn from './Pages/SignIn.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Firebase imports
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react'
+import {auth} from './firebase';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import Hotels from './Pages/Hotels';
 import Community from './Pages/Community';
 import BlogPost from './Pages/BlogPost';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA_pjw07w_NPI7xSBjj9nDLCQMYiaHd05g",
-  authDomain: "wanderlust-b43f0.firebaseapp.com",
-  projectId: "wanderlust-b43f0",
-  storageBucket: "wanderlust-b43f0.appspot.com",
-  messagingSenderId: "270953378851",
-  appId: "1:270953378851:web:fc31f3b872474dbb226d96",
-  measurementId: "G-CETQ2WC186"
-};
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
 
 
 function App() {
-  // const [user] = useAuthState(auth);
   let user;
 
   const SignInWithGoogle = (event) => {

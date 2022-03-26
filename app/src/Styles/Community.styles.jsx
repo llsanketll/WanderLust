@@ -43,6 +43,7 @@ const CommunityContainer = styled.div`
       padding: 5rem;
       margin-left: 15rem;
       border-radius: 1rem;
+      width: 70vw;
       ${PostCardContainer} {
         margin-bottom: 2rem;
       }

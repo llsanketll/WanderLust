@@ -20,7 +20,7 @@ function BlogPost(props) {
 
   const HandleCommentButtonClicked = e =>{
     e.preventDefault();
-    scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
     document.querySelector(".BlogPost-Comment-Input input").focus();
   }
 
