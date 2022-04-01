@@ -42,7 +42,7 @@ function Hotels() {
       <nav>
         <SearchBar color="#0071C2" placeholder="Enter Place Name" width="30vw" />
         <DropDown />
-        <Button color="#0071C2">Search</Button>
+        <Button color="#0071C2" fontColor="white">Search</Button>
       </nav>
       <hr className="Hotels-HR" />
       <main>

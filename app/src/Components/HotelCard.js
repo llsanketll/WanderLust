@@ -35,7 +35,7 @@ function HotelCard(props) {
       <div className="HotelCard-Last">
         <h3 className="HotelCard-Price"> Rs.1500</h3>
         <div>* per night</div>
-        <Button color="#0071C2">Go To Website</Button>
+        <Button color="#0071C2" fontColor="white">Go To Website</Button>
       </div>
     </HotelCardContainer>
   )

@@ -6,12 +6,13 @@ import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { NavBar } from '../Styles/NavBar.styles';
 import Icon from '../Styles/Icon.styles';
 import Button from './Button';
+import DropDown from './DropDown';
+import NavBarDropDown from './NavBarDropDown';
 
 function NavPane() {
   let classname, siteButton;
@@ -23,7 +24,8 @@ function NavPane() {
   const HandleClick = (e, url) => {
     navigate(url);
   };
-  //
+
+  console.log(currentUser);
   useEffect(() => {
     classname = window.location.pathname.substring(1);
     document.querySelectorAll('.MiddlePart > li').forEach((element) => {
@@ -44,7 +46,7 @@ function NavPane() {
 
       {/* Section for Pages */}
       <ul className="MiddlePart">
-        <li onClick={(e) => HandleClick(e,'/hotels')} className="hotels">
+        <li onClick={(e) => HandleClick(e, '/hotels')} className="hotels">
           <Icon color="#FFC187">
             <HotelOutlinedIcon />
           </Icon>
@@ -78,25 +80,19 @@ function NavPane() {
         {currentUser ? (
           <>
             <li>
-              {currentUser.photoURL ? (
-                <img src={currentUser.photoURL} alt="user" />
-              ) : (
-                <img
-                  src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0"
-                  alt="user"
-                />
-              )}
+              {currentUser.photoURL ? (<img src={currentUser.photoURL} alt="user" />) : (<img src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0" alt="user" />)}
+            </li>
+            <li onClick={() => navigate("/profile")}>
+              <p>{currentUser.displayName}</p>
             </li>
             <li>{currentUser.name}</li>
             <li>
-              <i>
-                <ArrowDropDownOutlinedIcon />
-              </i>
+              <NavBarDropDown />
             </li>
           </>
         ) : (
           <li>
-            <Button handleClick={() => navigate('/signin')}>Sign In</Button>
+            <Button color=" #0071C2" onClick={() => navigate('/signin')}>Sign In</Button>
           </li>
         )}
       </ul>

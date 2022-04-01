@@ -9,6 +9,9 @@ const DropDownContainer = styled.div`
   border-radius: 5rem;
   padding: 0.2rem 1rem;
   font-weight: 700;
+  & i{
+    cursor: pointer;
+  }
 `;
 
 export default DropDownContainer;

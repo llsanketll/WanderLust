@@ -14,18 +14,17 @@ export const NavBar = styled.nav`
   right: 0;
   z-index: 100;
 
-
   & > ul {
     display: flex;
   }
 
-  & li {
+  &  li {
     display: flex;
     align-items: center;
     list-style: none;
-    border-radius: 0.5rem;
     cursor:pointer;
   }
+   
 
   & .FirstPart
   {
@@ -44,6 +43,7 @@ export const NavBar = styled.nav`
   & .MiddlePart >li{
     margin: 0 2.5rem 0 2.5rem;
     padding: 0 1rem 0 1rem;
+    border-radius: 0.5rem;
   }
 
   & .MiddlePart > button{
@@ -51,13 +51,19 @@ export const NavBar = styled.nav`
     padding: 0 1rem 0 1rem;
   }
 
-  & .LastPart li{
+  & .LastPart
+  {
+    margin-right: 1rem;
+  }
+
+  & .LastPart > li{
     margin: 0 0.5rem 0 0.5rem;
   }
 
   & .LastPart img {
     border-radius: 50%;
     height: 2.5rem ;
+    margin-right: 1rem;
   }
 
   & li > i {

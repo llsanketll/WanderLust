@@ -120,7 +120,7 @@ export default function SignUp() {
           <div className="signin-form__register-link">
             <span>
               Already have an account?{' '}
-              <a href="/SignIn.js" className="register_link">
+              <a onClick={()=>navigate("/signin")} className="register_link">
                 LogIn.
               </a>
             </span>

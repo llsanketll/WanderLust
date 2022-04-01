@@ -11,19 +11,6 @@ function BlogPost(props) {
   const [blogData, setBlogData] = useState({});
   const [images, setImages] = useState([{url:"", active: false}]);
 
-  // const getPostData = async (post_id) => {
-  // const post_id = window.location.pathname.substring(6);
-  //   const newPhotos = [];
-  //   const post = await getPost(post_id);
-  //   const user = await getUserData(post.data().user_id);
-  //   const userName = user.data().name;
-  //   setBlogData({ ...post.data(), name: userName });
-  //   post.data().photos.forEach(url => {
-  //     newPhotos.push({ url, active: false });
-  //   })
-  //   setImages(newPhotos);
-  // }
-
   const getPostData = () => {
     const newPhotos = [...images];
     props.posts.forEach(post => {
@@ -125,7 +112,7 @@ function BlogPost(props) {
       <div className="BlogPost-Comments">
         <div className="BlogPost-Comments-Top">
           <h2>Comments</h2>
-          <Button color="#0071C2" onClick={HandleCommentButtonClicked}>
+          <Button color="#0071C2" fontColor="white" onClick={HandleCommentButtonClicked}>
             Comment
           </Button>
         </div>
@@ -203,7 +190,7 @@ function BlogPost(props) {
         <div className="BlogPost-Comment-Input">
           <img src={images[images.length - 1].url} />
           <input type="text" placeholder="Write a comment" />
-          <Button color="#0071C2">Post</Button>
+          <Button color="#0071C2" fontColor="white">Post</Button>
         </div>
       </div>
     </BlogPostConatainer>

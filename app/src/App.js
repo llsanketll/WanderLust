@@ -5,8 +5,8 @@ import Hotels from './Pages/Hotels';
 import SignIn from './Pages/SignIn.js';
 import SignUp from './Pages/SignUp.js';
 import PostExperience from './Pages/PostExperience.js';
-import BlogPost from './Components/BlogPost';
 import Community from './Pages/Community.js';
+import Profile from './Pages/Profile.js';
 import { AuthProvider } from './AuthContext';
 import { DatabaseProvider } from './DatabaseContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -48,6 +48,11 @@ function App() {
               exact
               path={process.env.PUBLIC_URL + '/postexp'}
               element={<PostExperience />}
+            />
+            <Route
+              exact
+              path={process.env.PUBLIC_URL + '/profile'}
+              element={<Profile />}
             />
           </Routes>
         </DatabaseProvider>

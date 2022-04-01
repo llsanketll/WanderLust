@@ -16,7 +16,7 @@ function Home(props) {
           <i className="LocationIcon">
             <LocationOnOutlinedIcon />
           </i>
-          <DropDown />
+          <DropDown data={["Kathmandu", "Pokhara", "Janakpur"]}/>
         </div>
 
         <div className="SearchBarDiv">
