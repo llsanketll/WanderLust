@@ -5,7 +5,7 @@ const SearchBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: ${props => props.width};
-  border-radius: 5rem;
+  border-radius: 0.5rem;
   height: 2.5rem;
   padding: 1rem 1rem;
   background: #f8f8f8;

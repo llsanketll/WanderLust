@@ -32,7 +32,7 @@ const CardContainer = styled.div`
     backdrop-filter: blur(32px);
     width: 4.5rem;
     border-radius: 2rem;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   & .Rating svg {

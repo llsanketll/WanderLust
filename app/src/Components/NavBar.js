@@ -25,7 +25,6 @@ function NavPane() {
     navigate(url);
   };
 
-  console.log(currentUser);
   useEffect(() => {
     classname = window.location.pathname.substring(1);
     document.querySelectorAll('.MiddlePart > li').forEach((element) => {

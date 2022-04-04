@@ -1,10 +1,42 @@
 import styled from "styled-components";
 import PostCardContainer from "./PostCard.styles";
+import ButtonContainer from "./Button.styles";
 
 const CommunityContainer = styled.div`
-  display: flex;
-  margin-top: 2em;
-  padding: 1rem;
+  & .Community-Main {
+    display: flex;
+    margin-top: 2em;
+    padding: 1rem;
+  }
+  & .mapboxgl-ctrl-geocoder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & svg {
+      position: initial;
+    }
+    & input {
+      width: 20rem;
+      font-size: 0.9rem;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+
+  & nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    & ${ButtonContainer} {
+      font-size: 2rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+  & .Community-Button-Container {
+    display: flex;
+  }
   & .Community-Left {
     display: flex;
     flex-direction: column;
@@ -43,6 +75,8 @@ const CommunityContainer = styled.div`
     padding: 5rem;
     border-radius: 1rem;
     width: 70vw;
+    display: grid;
+    place-content: center;
     ${PostCardContainer} {
       margin-bottom: 2rem;
     }
@@ -51,7 +85,7 @@ const CommunityContainer = styled.div`
   & .Community-AddIcon {
     background: #eb5757;
     position: absolute;
-    top: 8.5rem;
+    top: 13rem;
     right: 10rem;
     width: 4rem;
     height: 4rem;

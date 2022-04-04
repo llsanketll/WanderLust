@@ -9,7 +9,7 @@ import { useDatabase } from '../DatabaseContext';
 
 function BlogPost(props) {
   const [blogData, setBlogData] = useState({});
-  const [images, setImages] = useState([{url:"", active: false}]);
+  const [images, setImages] = useState([]);
 
   const getPostData = () => {
     const newPhotos = [...images];
@@ -117,13 +117,12 @@ function BlogPost(props) {
           </Button>
         </div>
         <CommentCard
-          image={images[images.length - 1].url}
+          image=""
           comment="asldkfjasldkfjasldkjflasdkjflkjasdflkjaslkfdjasdlkfjasldkfjlasdkjflakjdsflasjdkflk laskjdflkasdfjl asdflkhasdfljhasdflkjhasd fjksdahf ajkdsfha sdlfjkhasdf kjahsdflkajsdf lkjasdfhlkasdfj hsadklfjdslafkj;lasdfk jal;skdfj ;lasfkj;as dlfkjasdf; lkjadsf;l kasjdf;lkas dfj;lkadsfj ;ladskfj ads;lfkjas ;dflkjasdf; lkjadsf;lkjadsf"
           name="Sanket Lamsal"
           ID={20}
         />
         <CommentCard
-          image={images[0].url}
           name="Subash Khatri"
           comment="asldkfjasldkfjasldkjflasdkjflkjasdflkjaslkfdjasdlkfjasldkfjlasdkjflakjdsflasjdkflk"
           replies={[
@@ -136,7 +135,7 @@ function BlogPost(props) {
           ID={30}
         />
         <CommentCard
-          image={images[0].url}
+          image=""
           name="Subash Khatri"
           comment="asldkfjasldkfjasldkjflasdkjflkjasdflkjaslkfdjasdlkfjasldkfjlasdkjflakjdsflasjdkflk"
           replies={[
@@ -150,7 +149,7 @@ function BlogPost(props) {
           ID={40}
         />
         <CommentCard
-          image={images[0].url}
+          image=""
           ID={10}
           name="Pratham Bhattarai"
           comment="API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other. Each time you use an app like Facebook, send an instant message, or check the weather on your phone, you’re using an API.When you use an application on your mobile phone, the application connects to the Internet and sends data to a server. The server then retrieves that data, interprets it, performs the necessary actions and sends it back to your phone. The application then interprets that data and presents you with the information you wanted in a readable way. This is what an API is - all of this happens via API."
@@ -170,7 +169,7 @@ function BlogPost(props) {
           ]}
         />
         <CommentCard
-          image={images[0].url}
+          image=""
           name="Pratham Bhattarai"
           comment="asldkfjasldkfjasldkjflasdkjflkjasdflkjaslkfdjasdlkfjasldkfjlasdkjflakjdsflasjdkflk"
           ID={1}
@@ -188,7 +187,7 @@ function BlogPost(props) {
           ID={4}
         />
         <div className="BlogPost-Comment-Input">
-          <img src={images[images.length - 1].url} />
+          <img src="" />
           <input type="text" placeholder="Write a comment" />
           <Button color="#0071C2" fontColor="white">Post</Button>
         </div>

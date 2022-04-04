@@ -41,7 +41,7 @@ function Hotels() {
     <HotelsContainer>
       <nav>
         <SearchBar color="#0071C2" placeholder="Enter Place Name" width="30vw" />
-        <DropDown />
+        <DropDown items={{ country: "Nepal", cities: ["Kathmandu", "Pokhara", "Biratnagar", "Lumbini"]}}/>
         <Button color="#0071C2" fontColor="white">Search</Button>
       </nav>
       <hr className="Hotels-HR" />

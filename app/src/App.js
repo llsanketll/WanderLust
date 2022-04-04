@@ -11,6 +11,7 @@ import { AuthProvider } from './AuthContext';
 import { DatabaseProvider } from './DatabaseContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+
 function App() {
   return (
     <BrowserRouter>

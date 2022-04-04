@@ -43,6 +43,7 @@ function PostDiv(props) {
       {
         Posts &&
         Posts.map((post, index) => (
+          props.city == post.city && 
           <PostCard
             key={index}
             handleClick={HandlePostCardClick}
