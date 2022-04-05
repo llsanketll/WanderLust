@@ -1,14 +1,24 @@
 import styled from "styled-components";
 
-
 const CardContainer = styled.div`
-  background: url(${props => props.image}) no-repeat center;
+  color: white;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
   width: 244px;
   height: 268px;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  color: white;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  & .Card-Content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
   & .Heart {
     color: #dadada;
@@ -20,13 +30,18 @@ const CardContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 1rem 0 auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
   }
 
   & .Rating {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: 1.5rem;
     margin: auto 0 1rem 1rem;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(32px);
@@ -41,10 +56,12 @@ const CardContainer = styled.div`
   }
 
   & span {
+    position: absolute;
+    bottom: 5rem;
+    margin-left: 1rem;
     font-weight: bold;
-    margin: 9rem 0 0 1rem;
     text-shadow: 0.1rem 0.1rem 0.1rem #00000094;
   }
-`; 
+`;
 
 export default CardContainer;

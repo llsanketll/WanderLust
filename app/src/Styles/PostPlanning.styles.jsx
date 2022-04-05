@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PostExpContainer = styled.div`
+const PostPlanningContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -19,33 +19,39 @@ export const PostExpContainer = styled.div`
   }
 
   & h1 {
+    margin-bottom: 1rem;
     text-align: center;
-    margin-bottom: 2rem;
+  }
+  & .PostPlan-Search-Container {
+    display: flex;
   }
   & .form_container {
     display: block;
     background: white;
-    width: 40rem;
-    padding-top: 2.063rem;
-    padding-bottom: 2rem;
+    padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 15px 35px 0 rgba(60, 66, 87, 0.1),
       0 5px 15px 0 rgba(0, 0, 0, 0.07);
   }
+  & .PostPlan-Date-Container {
+    display: flex;
+  }
 
   & .form_content {
+    margin: 1rem;
+    & input, textarea {
+      padding: 1rem;
+    }
+  }
+  & #stay {
+    height: 2rem;
+    width: 20vw;
     padding: 1rem;
-    /* padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem; */
   }
-  & #landmark {
+  & #members {
     height: 2rem;
-    /* border: 1px solid black; */
-  }
-  & #title {
-    height: 2rem;
-    width: 100%;
+    margin-right: 12.1rem;
+    outline: none;
   }
   & #description {
     max-width: 100%;
@@ -102,3 +108,5 @@ export const PostExpContainer = styled.div`
     }
   }
 `;
+
+export default PostPlanningContainer;

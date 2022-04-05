@@ -3,13 +3,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import { useNavigate } from 'react-router-dom';
-import { useDatabase } from '../DatabaseContext';
 
 function PostCard(props) {
-  const navigate = useNavigate();
-  const { getUserData } = useDatabase();
-
   const getDays = (date) => {
     const postDate = new Date(date);
     if (postDate.getDate() === new Date().getDate()) {

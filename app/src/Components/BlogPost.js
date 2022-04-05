@@ -10,18 +10,18 @@ import { useDatabase } from '../DatabaseContext';
 function BlogPost(props) {
   const [blogData, setBlogData] = useState({});
   const [images, setImages] = useState([]);
+  const newImages = []
 
   const getPostData = () => {
-    const newPhotos = [...images];
     props.posts.forEach(post => {
-      if (post.post_id == props.post_id) {
-        setBlogData(post);
-        post.photos.forEach(url => {
-          newPhotos.push({ url, active: false });
-        })
-        setImages(newPhotos);
-      }
-    })
+      if (post.post_id != props.post_id) return;
+      setBlogData(post);
+      post.photos.forEach(image => {
+        newImages.push({ url: image, active: false });
+      });
+      setImages(newImages);
+    });
+
   }
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function BlogPost(props) {
         <div className="BlogPost-Main">
           <h1 className="BlogPost-Title">{blogData.title}</h1>
           <div className="BlogPost-InfoContainer">
-            <img src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0" />
+            <img src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0" alt="User Profile Picture" />
             <div className="BlogPost-FlexContainer">
               <span>by </span>
               <h4 className="BlogPost-AuthorName">{blogData.name}</h4>

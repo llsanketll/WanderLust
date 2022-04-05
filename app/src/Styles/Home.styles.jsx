@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled from "styled-components";
 
 const HomeContainer = styled.div`
   & .DropDownDiv {
@@ -33,32 +33,50 @@ const HomeContainer = styled.div`
     height: 50vh;
     width: 40vw;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-radius: 3rem;
+    padding: 2rem;
   }
 
-  & .MapBox-Container img{
+  & .MapBox-Container img {
     width: 100%;
     height: 20rem;
     border-radius: 2rem;
   }
 
-  & .CardGrid{
-    display:  flex;
+  & .CardGrid {
+    display: flex;
     justify-content: space-evenly;
     margin-top: 2rem;
   }
-  & .PopularPlaces{
+  & .PopularPlaces {
     margin-left: 6.5rem;
     margin-top: 5rem;
   }
-/* 
-  & .mapboxgl-canvas{
-    height: 400px;
-    width: 200px;
-    border-radius: 20px;
-  } */
+  & #home-geo-search {
+      width: 100%;
+    & .mapbox-gl-ctrl{
+    }
+    & .mapboxgl-ctrl-geocoder {
+      width: 100%;
+      margin-left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.5rem;
+      max-width: none;
+      & svg {
+        position: static;
+        transform: scale(1.5);
+        margin: 0 1rem 0 1rem;
+      }
+      & input {
+        width: 100%;
+        font-size: 0.9rem;
+        font-family: "Roboto", sans-serif;
+      }
+    }
+  }
 `;
 
 export default HomeContainer;

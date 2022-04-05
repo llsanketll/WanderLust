@@ -8,12 +8,15 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ProfileButton } from '../Styles/Profile.styles';
 import Planning from '../Components/Planning';
 import Button from '../Components/Button';
-import { geocoder } from '../Components/Mapbox';
+import { GetNewGeoCoder } from '../Components/Mapbox';
 import axios from 'axios';
+import PostExperience from './PostExperience';
+import PostPlanning from '../Components/PostPlanning';
 
 function Community(props) {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
+  const [canShow, setCanShow] = useState(false);
   const [currentPlace, setCurrentPlace] = useState({
     country: "",
     cities: [],
@@ -28,11 +31,7 @@ function Community(props) {
     setCurrentPage(page);
   }
   const HandleAddClick = () => {
-    if (currentPage === 1) {
-      navigate('/postexp');
-    } else {
-      navigate('/add-planning');
-    }
+    setCanShow(!canShow);
   }
   const GetCityPhoto = async (currentCity) => {
     const options = {
@@ -50,17 +49,22 @@ function Community(props) {
   }
 
   useEffect(() => {
-    if (!document.getElementById('geo-search').hasChildNodes())
-      geocoder.addTo(document.getElementById("geo-search"));
-
-    geocoder.setPlaceholder("Search for Place");
-    geocoder.on('result', e => {
-      const currentCountry = e.result.context[2].text;
-      const currentCity = e.result.text;
-      GetCityPhoto(currentCity).then(photoURL => {
-        setCurrentPlace({ country: currentCountry, currentCity, photoURL })
-      });
-    })
+    if (!document.getElementById('geo-search').hasChildNodes()) {
+      const communityGeoSearch = GetNewGeoCoder();
+      communityGeoSearch.addTo(document.getElementById("geo-search"));
+      communityGeoSearch.setPlaceholder("Search for Place");
+      communityGeoSearch.on('result', e => {
+        let currentCountry;
+        e.result.context.forEach(c => {
+          if (c.id.startsWith("country"))
+            currentCountry = c.text;
+        })
+        const currentCity = e.result.text;
+        GetCityPhoto(currentCity).then(photoURL => {
+          setCurrentPlace({ country: currentCountry, currentCity, photoURL })
+        });
+      })
+    }
   }, [])
   return (
     <CommunityContainer>
@@ -95,8 +99,18 @@ function Community(props) {
             </ProfileButton>
           </div>
           <div className="Community-PostCardContainer">
+            {
+              canShow &&
+              (
+                currentPage == 1 ?
+                  < PostExperience close={HandleAddClick} />
+                  :
+                  <PostPlanning close={HandleAddClick} />
+              )
+            }
             <div className="Community-AddIcon" onClick={HandleAddClick}>
               <AddIcon fontSize="inherit" />
+
             </div>
             {
               currentPage &&

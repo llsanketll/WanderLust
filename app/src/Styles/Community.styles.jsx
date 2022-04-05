@@ -8,18 +8,19 @@ const CommunityContainer = styled.div`
     margin-top: 2em;
     padding: 1rem;
   }
+
   & .mapboxgl-ctrl-geocoder {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+      font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI";
     & svg {
       position: initial;
     }
     & input {
       width: 20rem;
       font-size: 0.9rem;
-      font-family: "Roboto", sans-serif;
     }
   }
 
@@ -37,6 +38,7 @@ const CommunityContainer = styled.div`
   & .Community-Button-Container {
     display: flex;
   }
+
   & .Community-Left {
     display: flex;
     flex-direction: column;
@@ -44,6 +46,7 @@ const CommunityContainer = styled.div`
     width: 20%;
     margin-right: 2rem;
   }
+
   & .Community-Place-Image {
     height: 15rem;
     width: 15rem;
@@ -51,6 +54,7 @@ const CommunityContainer = styled.div`
     margin-bottom: 1rem;
     object-fit: cover;
   }
+
   & .Community-Place-Title {
     font-size: 3rem;
   }
@@ -85,7 +89,7 @@ const CommunityContainer = styled.div`
   & .Community-AddIcon {
     background: #eb5757;
     position: absolute;
-    top: 13rem;
+    top: 17.5rem;
     right: 10rem;
     width: 4rem;
     height: 4rem;

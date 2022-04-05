@@ -3,6 +3,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 import GroupsIcon from '@mui/icons-material/Groups';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import RateReviewIcon from '@mui/icons-material/RateReview';
+
 function PlanningCard(props) {
   return (
     <PlanningCardContainer>

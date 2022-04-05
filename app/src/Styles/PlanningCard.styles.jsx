@@ -13,6 +13,7 @@ const PlanningCardContainer = styled.div`
     }
     & span {
       font-weight: 500;
+      margin: 0 0.2rem 0 0.1rem;
     }
   }
 

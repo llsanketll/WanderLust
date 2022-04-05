@@ -5,7 +5,7 @@ import HomeContainer from '../Styles/Home.styles';
 import SearchBar from '../Components/SearchBar';
 import Card from '../Components/Card';
 import Footer from '../Components/Footer';
-import MapBox from '../Components/Mapbox';
+import MapBox, { GetNewGeoCoder } from '../Components/Mapbox';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { async } from '@firebase/util';
@@ -14,19 +14,20 @@ function Home(props) {
   const [popularPlaces, setPopularPlaces] = useState([]);
   //Get Popular places from opentripmap
   const GetPopularPlaces = async (lon, lat) => {
+    // const amadeus = "6iRrbTc3toyZRwjKKNCspl9q1TPcHqTl";
     const apiKey = "5ae2e3f221c38a28845f05b6405a6c96008af6be7be3432c861a33e4";
     const options = {
       method: 'GET',
       url: `https://api.opentripmap.com/0.1/en/places/radius?`,
       params: {
         apikey: apiKey,
-        radius: 10000,
+        radius: 100000,
         limit: 5,
         offset: 0,
         lat,
         lon,
         lang: "en",
-        kinds: "architecture",
+        kinds: "interesting_places",
         currency: "USD",
         rate: 2
       }
@@ -34,17 +35,25 @@ function Home(props) {
 
     const tempPlaces = []
     const result = await axios.request(options)
-    result.data.features.forEach(async el => {
+    const features = result.data.features;
+    await Promise.all(features.map(async el => {
       const xid = el.properties.xid;
       const place = await axios.request(`https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${apiKey}`);
       tempPlaces.push({ name: place.data.name, photoURL: place.data.preview.source, rating: place.data.rate });
-    })
+    }))
     return tempPlaces;
   }
   useEffect(() => {
-    // GetPopularPlaces(85.3240, 27.7172).then(result => {
-      // setPopularPlaces(result);
-    // })
+    if (!document.getElementById('home-geo-search').hasChildNodes()) {
+      const HomeGeoSearch = GetNewGeoCoder();
+      HomeGeoSearch.addTo(document.getElementById("home-geo-search"));
+      HomeGeoSearch.setPlaceholder("Search for Place");
+      HomeGeoSearch.on('result', async data => {
+        const lonLat = data.result.center;
+        const result = await GetPopularPlaces(lonLat[0], lonLat[1])
+        setPopularPlaces(result);
+      })
+    }
   })
   const GetCitites = async (country_code) => {
     const options = {
@@ -76,7 +85,7 @@ function Home(props) {
         </div>
 
         <div className="SearchBarDiv">
-          <SearchBar color="#4e4e4e" placeholder="Search for popular places..." width="30vw" />
+          <div id="home-geo-search"></div>
         </div>
 
         <div className="MapBox-Container">

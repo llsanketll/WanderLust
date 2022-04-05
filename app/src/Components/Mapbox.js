@@ -15,12 +15,17 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 // mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2xhbXNhbCIsImEiOiJja3psNmF6Y2QyNWl4Mm9uMm54c2c1YmhqIn0.Qkx2T5_F6Hn_hudF3yTBWQ';
 
-const geocoder = new MapboxGeocoder({
-  // Initialize the geocoder
-  accessToken: mapboxgl.accessToken, // Set the access token
-  mapboxgl: mapboxgl, // Set the mapbox-gl instance
-  types:'place',
-});
+
+
+const GetNewGeoCoder = () => {
+  const geocoder = new MapboxGeocoder({
+    // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    types: 'place',
+  });
+  return geocoder
+}
 
 function MapBox(props) {
   const map = useRef(null);
@@ -80,4 +85,4 @@ function MapBox(props) {
   );
 }
 export default MapBox;
-export {geocoder};
+export { GetNewGeoCoder };
