@@ -12,6 +12,13 @@ const ButtonContainer = styled.button`
   font-weight: 500;
   color: ${props => props.variant == "outlined" ? props.color : props.fontColor}; 
   cursor: pointer;
+  & svg{
+    margin-right: 0.2rem;
+  }
+  &:disabled{
+    background-color: gray;
+    cursor: default;
+  }
 `;
 
 export default ButtonContainer;

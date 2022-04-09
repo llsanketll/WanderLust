@@ -10,6 +10,7 @@ import {
   onSnapshot,
   query,
   where,
+  orderBy,
 } from 'firebase/firestore';
 
 const DatabaseContext = createContext();
@@ -26,7 +27,13 @@ export function DatabaseProvider({ children }) {
     const collectionSnapShot = collection(db, 'Post');
     const snapShot = await getDocs(collectionSnapShot);
     return snapShot.docs;
+  }
 
+  const getAllMessages = async (session_id) => {
+    const collectionSnapShot = collection(db, 'Messages',session_id, 'Messages');
+    const q = query(collectionSnapShot, orderBy("createdAt", "asc"));
+    const snapShot = await getDocs(q);
+    return snapShot.docs;
   }
 
   const getPost = async (post_id) => {
@@ -51,9 +58,9 @@ export function DatabaseProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  async function addPost(dataToUpload) {
+  const UploadData = async (dataToUpload, collectionName) => {
     try {
-      const docRef = await addDoc(collection(db, 'Post'), dataToUpload);
+      const docRef = await addDoc(collection(db, collectionName), dataToUpload);
     }
     catch (e) {
       console.error("Error adding document to firestore: ", e);
@@ -62,10 +69,11 @@ export function DatabaseProvider({ children }) {
 
   const value = {
     currentData,
-    addPost,
+    UploadData,
     getPost,
     getUserData,
-    getAllPosts
+    getAllPosts,
+    getAllMessages
   };
 
   return (

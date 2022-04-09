@@ -10,10 +10,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import RoomIcon from '@mui/icons-material/Room';
 import PersonIcon from '@mui/icons-material/Person';
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDatabase } from "../DatabaseContext";
 
 function Proflie(props) {
-  const { currentUser } = useAuth();
+  const [currentUser, setCurrentUser] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const {getUserData} = useDatabase();
+  const urlParams = useParams();
+  const uid = urlParams.id;
+
+  useEffect(async() => {
+    const result = await getUserData(uid);
+    setCurrentUser(result.data());
+
+  }, [])
 
   const ChangePage = id => {
     setCurrentPage(id);
@@ -24,15 +35,15 @@ function Proflie(props) {
         <img src={currentUser.photoURL} alt="profile" />
         <div className="Profile-FlexBox">
           <div>Posts</div>
-          <div>3</div>
+          <div>{currentUser.posts}</div>
         </div>
         <div className="Profile-FlexBox">
           <div>Following</div>
-          <div>3</div>
+          <div>{currentUser.following}</div>
         </div>
         <div className="Profile-FlexBox">
           <div>Followers</div>
-          <div>3</div>
+          <div>{currentUser.followers}</div>
         </div>
         <hr />
         <Button color="#EDEDED" fontColor="#737373">
@@ -42,18 +53,18 @@ function Proflie(props) {
       </div>
       <div className="Profile-Main-Container">
         <div className="Profile-Title-Container">
-          <h1>Sanket Lamsal</h1>
+          <h1>{currentUser.name}</h1>
           <Button variant="outlined" color="#2090E9">
             <PersonAddIcon />
             Follow
           </Button>
-          <Button color="#2090E9" fontColor="white" >
+          <Button color="#2090E9" fontColor="white" disabled={true} >
             <ChatBubbleIcon />
             Message
           </Button>
         </div>
         <div className="Profile-Bio">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
+          {currentUser.bio}
         </div>
         <div className="Profile-Button-Container">
           <ProfileButton selected={currentPage == 1 ? true : undefined} onClick={() => ChangePage(1)}>

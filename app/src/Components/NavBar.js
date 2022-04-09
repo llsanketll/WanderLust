@@ -91,7 +91,7 @@ function NavPane() {
           </>
         ) : (
           <li>
-            <Button color=" #0071C2" onClick={() => navigate('/signin')}>Sign In</Button>
+            <Button color=" #0071C2" fontColor="white" onClick={() => navigate('/signin')}>Sign In</Button>
           </li>
         )}
       </ul>

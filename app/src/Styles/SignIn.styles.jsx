@@ -61,6 +61,7 @@ export const SignInContainer = styled.div`
   }
   & .input_content {
     font-size: 16px;
+    font-weight: 400;
     text-align: left;
     font-weight: 300;
     width: 100%;

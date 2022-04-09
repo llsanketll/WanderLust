@@ -23,7 +23,7 @@ function PostExperience(props) {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const { currentUser } = useAuth();
-  const { currentData, addPost } = useDatabase();
+  const { currentData, UploadData } = useDatabase();
 
   // FIREBASE STORAGE: setting up file and storage reference
 
@@ -78,7 +78,7 @@ function PostExperience(props) {
     };
 
     try {
-      await addPost(dataToUpload);
+      await UploadData(dataToUpload, 'Post');
       title.current.value = '';
       landmark.current.value = '';
       description.current.value = '';

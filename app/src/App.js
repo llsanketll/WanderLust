@@ -4,12 +4,13 @@ import NavPane from './Components/NavBar.js';
 import Hotels from './Pages/Hotels';
 import SignIn from './Pages/SignIn.js';
 import SignUp from './Pages/SignUp.js';
-import PostExperience from './Pages/PostExperience.js';
 import Community from './Pages/Community.js';
 import Profile from './Pages/Profile.js';
 import { AuthProvider } from './AuthContext';
 import { DatabaseProvider } from './DatabaseContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChatRoom from './Pages/ChatRoom';
+import NotFound from './Pages/NotFound';
 
 
 function App() {
@@ -47,13 +48,17 @@ function App() {
             />
             <Route
               exact
-              path={process.env.PUBLIC_URL + '/postexp'}
-              element={<PostExperience />}
+              path={process.env.PUBLIC_URL + '/message/:id'}
+              element={<ChatRoom />}
             />
             <Route
               exact
-              path={process.env.PUBLIC_URL + '/profile'}
+              path={process.env.PUBLIC_URL + '/profile/:id'}
               element={<Profile />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
             />
           </Routes>
         </DatabaseProvider>

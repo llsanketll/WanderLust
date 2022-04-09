@@ -57,6 +57,7 @@ function SignIn() {
                     id="Email"
                     ref={emailEl}
                     required
+                    autoComplete='email'
                     className="input_content margin_top12"
                   />
                 </div>
@@ -76,6 +77,7 @@ function SignIn() {
                     type="password"
                     name="Password"
                     id="Password"
+                    autoComplete='current-password'
                     ref={passwordEl}
                     required
                     className="input_content margin_top12"
