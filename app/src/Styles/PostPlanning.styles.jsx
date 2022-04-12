@@ -43,7 +43,7 @@ const PostPlanningContainer = styled.div`
       padding: 1rem;
     }
   }
-  & #stay {
+  & #duration {
     height: 2rem;
     width: 20vw;
     padding: 1rem;
@@ -63,6 +63,7 @@ const PostPlanningContainer = styled.div`
     border: 1px solid black;
     margin-left: 0;
     height: 2.5rem;
+    z-index: 100;
   }
   & .mapboxgl-ctrl-geocoder--pin-right > * {
     background-color: transparent;

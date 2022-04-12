@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Button from './Button';
 import { useEffect } from 'react';
 import { useDatabase } from '../DatabaseContext';
+import ProfileImg from './ProfileImg';
 
 function BlogPost(props) {
   const [blogData, setBlogData] = useState({});
@@ -76,7 +77,10 @@ function BlogPost(props) {
         <div className="BlogPost-Main">
           <h1 className="BlogPost-Title">{blogData.title}</h1>
           <div className="BlogPost-InfoContainer">
-            <img src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0" alt="User Profile Picture" />
+            {
+              blogData.uid &&
+              <ProfileImg uid={blogData.uid} />
+            }
             <div className="BlogPost-FlexContainer">
               <span>by </span>
               <h4 className="BlogPost-AuthorName">{blogData.name}</h4>

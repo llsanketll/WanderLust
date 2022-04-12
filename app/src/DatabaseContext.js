@@ -1,17 +1,7 @@
 import React, { useState, useContext, useEffect, createContext } from 'react';
 import { db } from './firebase';
-import {
-  doc,
-  collection,
-  addDoc,
-  getDocs,
-  getDoc,
-  setDoc,
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-} from 'firebase/firestore';
+import { doc, collection, addDoc, getDocs, getDoc, setDoc, onSnapshot, query, where, orderBy, } from 'firebase/firestore';
+import { useAuth } from './AuthContext';
 
 const DatabaseContext = createContext();
 
@@ -20,8 +10,8 @@ export function useDatabase() {
 }
 
 export function DatabaseProvider({ children }) {
+  const { currentUser } = useAuth();
   const [currentData, setData] = useState();
-  const [loading, setLoading] = useState(true);
 
   const getAllPosts = async () => {
     const collectionSnapShot = collection(db, 'Post');
@@ -30,7 +20,7 @@ export function DatabaseProvider({ children }) {
   }
 
   const getAllMessages = async (session_id) => {
-    const collectionSnapShot = collection(db, 'Messages',session_id, 'Messages');
+    const collectionSnapShot = collection(db, 'Messages', session_id, 'Messages');
     const q = query(collectionSnapShot, orderBy("createdAt", "asc"));
     const snapShot = await getDocs(q);
     return snapShot.docs;
@@ -41,30 +31,63 @@ export function DatabaseProvider({ children }) {
     return post;
   }
 
-  const getUserData = async (user_id) => {
-    const dataSnapShot = getDoc(doc(db, `User/${user_id}`));
+  const getUserData = async (uid) => {
+    const dataSnapShot = getDoc(doc(db, `User/${uid}`));
     return dataSnapShot;
   };
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Post'), (snapshot) => {
-      const newData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setData(newData);
-      setLoading(false);
-    });
-    return unsubscribe;
-  }, []);
 
   const UploadData = async (dataToUpload, collectionName) => {
     try {
       const docRef = await addDoc(collection(db, collectionName), dataToUpload);
+      return docRef;
     }
     catch (e) {
       console.error("Error adding document to firestore: ", e);
     }
+  }
+
+  async function addPlan(dataToUpload) {
+    try {
+      const docRef = await addDoc(
+        collection(db, `User/${currentUser.uid}/Planning`),
+        dataToUpload
+      );
+    } catch (e) {
+      console.error('Error posting Visiting Plan to firestore: ', e);
+    }
+  }
+  const getAllPlannedPosts = async () => {
+    const collectionSnapShot = collection(db, `User`);
+    const snapShot = await getDocs(collectionSnapShot);
+    const plans = [];
+
+    await Promise.all(
+      snapShot.docs.map(async (doc) => {
+        const collectionSnapShot2 = collection(db, `User`, doc.id, 'Planning');
+        const snapShot2 = await getDocs(collectionSnapShot2);
+        snapShot2.docs.map(async (plan) => {
+          plans.push({
+            ...plan.data(),
+            name: doc.data().name,
+            photoURL: doc.data().photoURL,
+          });
+        });
+      })
+    );
+    return plans;
+  };
+
+  function GenerateHash(s1, s2) {
+    let i, char1, char2, hash = 0;
+    if (s1.length === 0) return hash;
+    for (i = 0; i < s1.length; i++) {
+      char1 = s1.charCodeAt(i);
+      char2 = s2.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char1 + char2;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+
   }
 
   const value = {
@@ -73,12 +96,15 @@ export function DatabaseProvider({ children }) {
     getPost,
     getUserData,
     getAllPosts,
-    getAllMessages
+    getAllMessages,
+    addPlan,
+    getAllPlannedPosts,
+    GenerateHash
   };
 
   return (
     <DatabaseContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </DatabaseContext.Provider>
   );
 }

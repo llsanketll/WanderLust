@@ -25,7 +25,7 @@ function Community(props) {
   })
   const Pages = [
     <PostDiv city={currentPlace.currentCity} />,
-    <Planning />
+    <Planning city={currentPlace.currentCity}/>
   ];
   const ChangePage = (page) => {
     setCurrentPage(page);

@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom';
 
 function NavBarDropDown(props) {
   const [canShow, setCanShow] = useState(false);
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   const navigate = useNavigate();
   return (
     <NavBarDropDownContainer>
@@ -18,7 +18,7 @@ function NavBarDropDown(props) {
         {
           canShow &&
           <ul>
-            <li onClick={() => {navigate("/profile"); setCanShow(false)}}><i><PersonIcon /></i>Profile</li>
+            <li onClick={() => {navigate("/profile/" + currentUser.uid); setCanShow(false)}}><i><PersonIcon /></i>Profile</li>
             <li onClick={() =>{logout(); navigate("/"); setCanShow(false)}}><i><ExitToAppIcon /></i>Signout</li>
           </ul>
         }

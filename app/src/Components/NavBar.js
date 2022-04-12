@@ -13,6 +13,7 @@ import Icon from '../Styles/Icon.styles';
 import Button from './Button';
 import DropDown from './DropDown';
 import NavBarDropDown from './NavBarDropDown';
+import ProfileImg from './ProfileImg';
 
 function NavPane() {
   let classname, siteButton;
@@ -79,7 +80,7 @@ function NavPane() {
         {currentUser ? (
           <>
             <li>
-              {currentUser.photoURL ? (<img src={currentUser.photoURL} alt="user" />) : (<img src="https://i.scdn.co/image/ab67616d00001e02814d6aef9f54a1ff3e32f2d0" alt="user" />)}
+              <ProfileImg uid={currentUser.uid}/>
             </li>
             <li onClick={() => navigate("/profile")}>
               <p>{currentUser.displayName}</p>

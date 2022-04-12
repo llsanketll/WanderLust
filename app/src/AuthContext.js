@@ -6,7 +6,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  getAdditionalUserInfo
 } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -17,20 +19,30 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  let user;
 
   const SignInWithGoogle = (event) => {
     event.preventDefault();
-
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        user = result.user;
-      })
+    signInWithPopup(auth, provider).then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      const { isNewUser } = getAdditionalUserInfo(result);
+      if (isNewUser) {
+        const dataToUpload = {
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          age: '',
+          followers: 0,
+          following: 0,
+          posts: 0,
+          bio: '',
+        }
+        setDoc(doc(db, 'User', user.uid), dataToUpload);
+      }
+    })
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -44,7 +56,9 @@ export function AuthProvider({ children }) {
   };
 
   function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).then(() => {
+
+    });
   }
 
   function signin(email, password) {
@@ -68,14 +82,14 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    const unsubscribe = auth.onAuthStateChanged((newUser) => {
+      setCurrentUser(newUser);
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, [user]);
+  }, []);
 
   const value = {
     currentUser,
