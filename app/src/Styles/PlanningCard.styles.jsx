@@ -3,7 +3,7 @@ const PlanningCardContainer = styled.div`
   background: #f8f8f8;
   padding: 2rem;
   border-radius: 1rem;
-  width: 50vw;
+  width: 55vw;
   & .PlanningCard-FlexBox {
     display: flex;
     align-items: center;

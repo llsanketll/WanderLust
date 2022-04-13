@@ -22,6 +22,11 @@ function Proflie(props) {
   const uid = urlParams.id;
   const navigate = useNavigate();
   const { GenerateHash } = useDatabase();
+  const [postCount, setPostCount] = useState(0);
+
+  const Pages = [
+    <PostDiv uid={uid} setPostCount={setPostCount} />
+  ]
 
   useEffect(async () => {
     if (!currentUser) {
@@ -50,7 +55,7 @@ function Proflie(props) {
             <img src={profileUser.photoURL && profileUser.photoURL.replace('s96', 's400')} alt="profile" />
             <div className="Profile-FlexBox">
               <div>Posts</div>
-              <div>{profileUser.posts}</div>
+              <div>{postCount}</div>
             </div>
             <div className="Profile-FlexBox">
               <div>Following</div>
@@ -100,7 +105,10 @@ function Proflie(props) {
               </ProfileButton>
             </div>
             <div className="Profile-Content">
-              <PostDiv />
+              {
+                currentPage &&
+                Pages[currentPage - 1]
+              }
             </div>
           </div>
         </>

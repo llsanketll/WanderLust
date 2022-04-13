@@ -82,7 +82,7 @@ function NavPane() {
             <li>
               <ProfileImg uid={currentUser.uid}/>
             </li>
-            <li onClick={() => navigate("/profile")}>
+            <li onClick={() => navigate("/profile/" + currentUser.uid)}>
               <p>{currentUser.displayName}</p>
             </li>
             <li>{currentUser.name}</li>

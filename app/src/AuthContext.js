@@ -9,6 +9,7 @@ import {
   getAdditionalUserInfo
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -16,6 +17,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -42,6 +44,7 @@ export function AuthProvider({ children }) {
         }
         setDoc(doc(db, 'User', user.uid), dataToUpload);
       }
+      navigate('/');
     })
       .catch((error) => {
         // Handle Errors here.

@@ -3,13 +3,14 @@ import FlightIcon from '@mui/icons-material/Flight';
 import GroupsIcon from '@mui/icons-material/Groups';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import RateReviewIcon from '@mui/icons-material/RateReview';
+import ProfileImg from './ProfileImg';
 
 function PlanningCard(props) {
   return (
     <PlanningCardContainer>
       <div className="PlanningCard-Top">
         <div className="PlanningCard-First">
-          <img src={props.photoURL && props.photoURL} alt="Planning" />
+          <ProfileImg src={props.photoURL} uid={props.uid}/>
         </div>
         <div className="PlanningCard-Second">
           <div className="PlanningCard-Second-Main">

@@ -36,6 +36,32 @@ export function DatabaseProvider({ children }) {
     return dataSnapShot;
   };
 
+  const getAllComments = async (post_id) => {
+    const comments = [];
+    const collectionSnapShot = collection(db, `Post/${post_id}/Comments`);
+    const q = query(collectionSnapShot, orderBy("time", "desc"));
+    const commentSnapShot = await getDocs(q);
+    await Promise.all(
+      commentSnapShot.docs.map(async comment => {
+        const replies = await getAllReplies(post_id, comment.id);
+        console.log(replies);
+        comments.push({ ...comment.data(), id: comment.id, replies });
+      })
+    )
+    return comments;
+  }
+
+  const getAllReplies = async (post_id, comment_id) => {
+    const replies = [];
+    const collectionSnapShot = collection(db, `Post/${post_id}/Comments/${comment_id}/Replies`);
+    const q = query(collectionSnapShot, orderBy("time", "asc"));
+    const snapShot = await getDocs(q);
+    snapShot.docs.map(reply => {
+      replies.push(reply.data());
+    })
+    return replies;
+  }
+
   const UploadData = async (dataToUpload, collectionName) => {
     try {
       const docRef = await addDoc(collection(db, collectionName), dataToUpload);
@@ -63,13 +89,14 @@ export function DatabaseProvider({ children }) {
 
     await Promise.all(
       snapShot.docs.map(async (doc) => {
-        const collectionSnapShot2 = collection(db, `User`, doc.id, 'Planning');
+        const collectionSnapShot2 = collection(db, `User/${doc.id}/Planning`);
         const snapShot2 = await getDocs(collectionSnapShot2);
         snapShot2.docs.map(async (plan) => {
           plans.push({
             ...plan.data(),
             name: doc.data().name,
             photoURL: doc.data().photoURL,
+            uid: doc.id,
           });
         });
       })
@@ -99,6 +126,7 @@ export function DatabaseProvider({ children }) {
     getAllMessages,
     addPlan,
     getAllPlannedPosts,
+    getAllComments,
     GenerateHash
   };
 
