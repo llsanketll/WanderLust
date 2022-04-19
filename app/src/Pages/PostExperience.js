@@ -17,7 +17,6 @@ function PostExperience(props) {
   const image = useRef();
   const description = useRef();
   const [location, setLocation] = useState('');
-  const urls = [];
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,10 +34,12 @@ function PostExperience(props) {
 
   async function handleChange(e) {
     e.preventDefault();
+    const newImages = [];
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
-      setImages([...images, newImage]);
+      newImages.push(newImage);
     }
+    setImages(newImages);
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -56,6 +57,7 @@ function PostExperience(props) {
     setLoading(true);
     SubmitButton.disabled = true;
 
+    const urls = [];
     await Promise.all(
       images.map(async (per_image) => {
         const postImageRef = ref(
@@ -69,12 +71,14 @@ function PostExperience(props) {
     );
     const dataToUpload = {
       city: location,
-      user_id: currentUser.uid,
+      uid: currentUser.uid,
       landmark: landmark.current.value,
       title: title.current.value,
       description: description.current.value,
       date: new Date().getTime(),
       photos: urls,
+      likes: 0,
+      comments: 0,
     };
 
     try {

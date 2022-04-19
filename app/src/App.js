@@ -63,7 +63,7 @@ function App() {
           </Routes>
         </DatabaseProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

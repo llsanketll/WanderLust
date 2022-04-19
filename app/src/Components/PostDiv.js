@@ -8,23 +8,36 @@ function PostDiv(props) {
   const [Posts, setPosts] = useState([]);
   const [currentPostID, setCurrentPostID] = useState(0);
   const { getAllPosts, getUserData } = useDatabase();
-  const newPosts = []
 
   const GetPosts = async () => {
+    const newPosts = [];
     const posts = await getAllPosts();
-    await Promise.all(posts.map(async post => {
-      const postData = post.data();
-      if (props.city != postData.city) return;
-      const user = await getUserData(postData.user_id)
-      const userName = user.data().name;
-      newPosts.push({ ...postData, name: userName, post_id: post.id });
-    }))
+    if (props.uid) {
+      await Promise.all(posts.map(async post => {
+        const postData = post.data();
+        const user = await getUserData(postData.uid)
+        if (props.uid !== user.id) return;
+        const userName = user.data().name;
+        newPosts.push({ ...postData, name: userName, post_id: post.id });
+      }))
+    }
+    else {
+      await Promise.all(posts.map(async post => {
+        const postData = post.data();
+        if (postData.city !== props.city) return;
+        const user = await getUserData(postData.uid)
+        const userName = user.data().name;
+        newPosts.push({ ...postData, name: userName, post_id: post.id });
+      }))
+    }
     setPosts(newPosts);
+    if (props.setPostCount)
+      props.setPostCount(newPosts.length);
   }
 
   useEffect(() => {
     GetPosts();
-  }, [props.city])
+  }, [props.city, props.uid])
 
   const HandlePostCardClick = (post_id) => {
     setCurrentPostID(post_id);
@@ -44,7 +57,6 @@ function PostDiv(props) {
       {
         Posts &&
         Posts.map((post, index) => (
-          props.city == post.city &&
           <PostCard
             key={index}
             handleClick={() => HandlePostCardClick(post.post_id)}
@@ -55,5 +67,6 @@ function PostDiv(props) {
     </>
   )
 }
+
 
 export default PostDiv;
