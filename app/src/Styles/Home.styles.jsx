@@ -19,23 +19,25 @@ const HomeContainer = styled.div`
   }
 
   & .Landing {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+    display: grid;
+    place-items: center;
+     & h1{
+       margin: 1rem 0 1rem 0;
+       font-size: 2.5rem;
+       font-weight: 700;
+     }
   }
 
   & .SearchBarDiv {
-    margin: 10vh 0 0 0;
-    background: url("https://images.unsplash.com/photo-1479046934034-119c613579a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80")
+    background: url("https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80")
       no-repeat;
     background-size: cover;
-    height: 50vh;
-    width: 40vw;
+    height: 70vh;
+    width: 50vw;
     display: flex;
     align-items: center;
-    border-radius: 3rem;
     padding: 2rem;
+    border-radius: 1rem;
   }
 
   & .MapBox-Container img {
@@ -54,8 +56,8 @@ const HomeContainer = styled.div`
     margin-top: 5rem;
   }
   & #home-geo-search {
-      width: 100%;
-    & .mapbox-gl-ctrl{
+    width: 100%;
+    & .mapbox-gl-ctrl {
     }
     & .mapboxgl-ctrl-geocoder {
       width: 100%;

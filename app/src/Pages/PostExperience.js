@@ -78,7 +78,7 @@ function PostExperience(props) {
       date: new Date().getTime(),
       photos: urls,
       likes: 0,
-      comments: 0,
+      commentCount: 0
     };
 
     try {

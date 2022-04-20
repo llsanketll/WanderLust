@@ -7,6 +7,7 @@ const CardContainer = styled.div`
   overflow: hidden;
   width: 244px;
   height: 268px;
+  cursor: pointer;
   & img {
     width: 100%;
     height: 100%;

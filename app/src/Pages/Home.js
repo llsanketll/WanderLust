@@ -36,14 +36,15 @@ function Home(props) {
     const tempPlaces = []
     const result = await axios.request(options)
     const features = result.data.features;
+    console.log(features);
     await Promise.all(features.map(async el => {
       const xid = el.properties.xid;
       const place = await axios.request(`https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${apiKey}`);
-      tempPlaces.push({ name: place.data.name, photoURL: place.data.preview.source, rating: place.data.rate });
+      tempPlaces.push({ name: place.data.name, photoURL: place.data.preview.source, rating: el.properties.rate, xid: place.data.xid });
     }))
     return tempPlaces;
   }
-  useEffect(() => {
+  useEffect(async () => {
     if (!document.getElementById('home-geo-search').hasChildNodes()) {
       const HomeGeoSearch = GetNewGeoCoder();
       HomeGeoSearch.addTo(document.getElementById("home-geo-search"));
@@ -54,7 +55,9 @@ function Home(props) {
         setPopularPlaces(result);
       })
     }
-  })
+    const result = await GetPopularPlaces(85.3240, 27.7172);
+    setPopularPlaces(result);
+  }, [])
   const GetCitites = async (country_code) => {
     const options = {
       method: 'GET',
@@ -77,21 +80,20 @@ function Home(props) {
 
     <HomeContainer>
       <div className="Landing">
-        <div className="DropDownDiv">
+        {/* <div className="DropDownDiv">
           <i className="LocationIcon">
             <LocationOnOutlinedIcon />
           </i>
           <DropDown items={{ country: "Nepal", cities: ["Kathmandu", "Pokhara", "Biratnagar", "Lumbini", "Bhaktapur", "Sagarmatha"], }} />
-        </div>
-
+        </div> */}
+        <h1>Fulfill your WanderLust</h1>
         <div className="SearchBarDiv">
           <div id="home-geo-search"></div>
         </div>
 
-        <div className="MapBox-Container">
-          {/* This is just a place holder for google maps api */}
+        {/* <div className="MapBox-Container">
           <MapBox directions />
-        </div>
+        </div> */}
       </div>
 
       <h2 className="PopularPlaces">Popular Places</h2>

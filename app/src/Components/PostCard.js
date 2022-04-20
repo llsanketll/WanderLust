@@ -39,11 +39,11 @@ function PostCard(props) {
         <div className="PostCard-FlexContainer">
           <div className="PostCard-FlexContainer">
             <ModeCommentIcon />
-            <p id="PostCard-Comment-Count">5</p>
+            <p id="PostCard-Comment-Count">{props.comments.length}</p>
           </div>
           <div className="PostCard-FlexContainer">
             <ThumbUpIcon />
-            <p id="PostCard-Like-Count">{props.likes}</p>
+            <p id="PostCard-Like-Count">{props.likes.length}</p>
           </div>
         </div>
       </div>

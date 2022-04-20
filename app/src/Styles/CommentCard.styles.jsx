@@ -51,10 +51,8 @@ const CommentCardContainer = styled.div`
   }
 
   & .CommentCard-Reply-Input {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    & input {
+    margin-bottom: 1rem; 
+    input {
       margin-top: 0.5rem;
       width: 100%;
       height: 100%;

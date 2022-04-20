@@ -13,24 +13,60 @@ const BlogPostConatainer = styled.div`
   align-items: center;
   overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.8);
-  
-  & .BlogPost-CloseIcon{
+
+  & .BlogPost-Like-Container{
+    background: white;
+    border-radius: 1rem;
+    margin: 1rem 0 2rem 0;
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    & div{
+      margin-inline: 2rem;
+      & span{
+        margin-inline: 0.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  & .BlogPost-Heart{
+    display: grid;
+    place-content: center;
+    width: 3rem;
+    height: 3rem;  
+    background: ${props=> props.isLiked? "#fe4955" : "grey"};
+    border-radius: 50%;
+    padding: 0.6rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+    & svg {
+      fill: white;
+    }
+  }
+
+  & .BlogPost-CloseIcon {
     position: fixed;
     top: 8rem;
     right: 3.5rem;
     cursor: pointer;
-    & svg{
+    & svg {
       fill: white;
       transform: scale(3);
     }
   }
 
   & .BlogPost-Top {
+    display: grid;
+    place-content: center;
     width: 100vw;
     height: 92vh;
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
+    margin-top: 1rem;
   }
 
   & .BlogPost-Main {
