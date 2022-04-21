@@ -43,15 +43,13 @@ export function DatabaseProvider({ children }) {
     const commentSnapShot = await getDocs(q);
     await Promise.all(
       commentSnapShot.docs.map(async comment => {
-        const replies = await getAllReplies(post_id, comment.id);
-        console.log(replies);
-        comments.push({ ...comment.data(), id: comment.id, replies });
+        comments.push({ ...comment.data(), comment_id: comment.id });
       })
     )
     return comments;
   }
 
-  const getAllReplies = async (post_id, comment_id) => {
+  const getReplies = async (post_id, comment_id) => {
     const replies = [];
     const collectionSnapShot = collection(db, `Post/${post_id}/Comments/${comment_id}/Replies`);
     const q = query(collectionSnapShot, orderBy("time", "asc"));
@@ -127,6 +125,7 @@ export function DatabaseProvider({ children }) {
     addPlan,
     getAllPlannedPosts,
     getAllComments,
+    getReplies,
     GenerateHash
   };
 
