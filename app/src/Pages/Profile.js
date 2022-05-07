@@ -9,9 +9,12 @@ import PostDiv from "../Components/PostDiv";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import RoomIcon from '@mui/icons-material/Room';
 import PersonIcon from '@mui/icons-material/Person';
+import CheckIcon from '@mui/icons-material/Check';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDatabase } from "../DatabaseContext";
+import { db } from "../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 function Proflie(props) {
   const [profileUser, setProfileUser] = useState({});
@@ -23,6 +26,7 @@ function Proflie(props) {
   const navigate = useNavigate();
   const { GenerateHash } = useDatabase();
   const [postCount, setPostCount] = useState(0);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const Pages = [
     <PostDiv uid={uid} setPostCount={setPostCount} />
@@ -34,11 +38,22 @@ function Proflie(props) {
       return;
     }
     const result = await getUserData(uid);
+    if (result.data().followers) {
+      setIsFollowing(result.data().followers.includes(currentUser.uid));
+    }
     setProfileUser({ ...result.data(), uid });
   }, [urlParams])
 
   const ChangePage = id => {
     setCurrentPage(id);
+  }
+
+  const HandleFollowClick = async () => {
+    setIsFollowing(!isFollowing);
+    const followers = [...profileUser.followers];
+    const newFollowers = isFollowing ? followers.filter(follower => follower !== currentUser.uid) : [...followers, currentUser.uid];
+    await updateDoc(doc(db, "User", profileUser.uid), { followers: newFollowers });
+    setProfileUser({ ...profileUser, followers:newFollowers  });
   }
 
   const HandleMessageClick = () => {
@@ -63,7 +78,7 @@ function Proflie(props) {
             </div>
             <div className="Profile-FlexBox">
               <div>Followers</div>
-              <div>{profileUser.followers}</div>
+              <div>{profileUser.followers && profileUser.followers.length}</div>
             </div>
             <hr />
             <Button color="#EDEDED" fontColor="#737373">
@@ -74,9 +89,20 @@ function Proflie(props) {
           <div className="Profile-Main-Container">
             <div className="Profile-Title-Container">
               <h1>{profileUser.name}</h1>
-              <Button variant="outlined" color="#2090E9">
-                <PersonAddIcon />
-                Follow
+              <Button variant="outlined" color="#2090E9" disabled={currentUser.uid == profileUser.uid} onClick={HandleFollowClick}>
+                {
+                  isFollowing ?
+                    <>
+                      <CheckIcon />
+                      Following
+                    </>
+                    :
+                    <>
+                      <PersonAddIcon />
+                      Follow
+                    </>
+
+                }
               </Button>
               <Button color="#2090E9" fontColor="white" disabled={currentUser.uid == profileUser.uid} onClick={HandleMessageClick} >
                 <ChatBubbleIcon />

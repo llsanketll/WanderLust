@@ -18,55 +18,52 @@ export const NavBar = styled.nav`
     display: flex;
   }
 
-  &  li {
+  & li {
     display: flex;
     align-items: center;
     list-style: none;
-    cursor:pointer;
+    cursor: pointer;
   }
-   
 
-  & .FirstPart
-  {
+  & .FirstPart {
     margin: 0 2rem;
   }
 
-  & .FirstPart span
-  {
+  & .FirstPart span {
     font-size: 1.5rem;
   }
 
-  & .FirstPart li{
+  & .FirstPart li {
     flex-direction: column;
   }
 
-  & .MiddlePart >li{
+  & .MiddlePart > li {
     margin: 0 2.5rem 0 2.5rem;
     padding: 0 1rem 0 1rem;
     border-radius: 0.5rem;
   }
 
-  & .MiddlePart > button{
+  & .MiddlePart > button {
     margin: 0 2.5rem 0 2.5rem;
     padding: 0 1rem 0 1rem;
   }
 
-  & .LastPart
-  {
+  & .LastPart {
     margin-right: 1rem;
   }
 
-  & .LastPart > li{
+  & .LastPart > li {
     margin: 0 0.5rem 0 0.5rem;
   }
 
   & .LastPart img {
     border-radius: 50%;
-    height: 2.5rem ;
+    height: 2.5rem;
     margin-right: 1rem;
   }
 
   & li > i {
     margin: 0.5rem;
   }
+
 `;

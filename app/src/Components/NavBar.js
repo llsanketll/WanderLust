@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-
 import { useAuth } from '../AuthContext';
-
 import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import { NavBar } from '../Styles/NavBar.styles';
 import Icon from '../Styles/Icon.styles';
 import Button from './Button';
-import DropDown from './DropDown';
 import NavBarDropDown from './NavBarDropDown';
 import ProfileImg from './ProfileImg';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import Notification from './Notification';
 
 function NavPane() {
   let classname, siteButton;
@@ -74,13 +72,13 @@ function NavPane() {
           <span>Support</span>
         </li>
       </ul>
-
+      <Notification/>
       {/* Section for SignIn or UserProfile */}
       <ul className="LastPart">
         {currentUser ? (
           <>
             <li>
-              <ProfileImg uid={currentUser.uid}/>
+              <ProfileImg uid={currentUser.uid} />
             </li>
             <li onClick={() => navigate("/profile/" + currentUser.uid)}>
               <p>{currentUser.displayName}</p>

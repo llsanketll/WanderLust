@@ -12,6 +12,7 @@ import { async } from '@firebase/util';
 
 function Home(props) {
   const [popularPlaces, setPopularPlaces] = useState([]);
+  const [currentCity, setCurrentCity] = useState("Kathmandu");
   //Get Popular places from opentripmap
   const GetPopularPlaces = async (lon, lat) => {
     // const amadeus = "6iRrbTc3toyZRwjKKNCspl9q1TPcHqTl";
@@ -40,6 +41,7 @@ function Home(props) {
     await Promise.all(features.map(async el => {
       const xid = el.properties.xid;
       const place = await axios.request(`https://api.opentripmap.com/0.1/en/places/xid/${xid}?apikey=${apiKey}`);
+      if(tempPlaces.includes(place.data.name)) return;
       tempPlaces.push({ name: place.data.name, photoURL: place.data.preview.source, rating: el.properties.rate, xid: place.data.xid });
     }))
     return tempPlaces;
@@ -50,6 +52,7 @@ function Home(props) {
       HomeGeoSearch.addTo(document.getElementById("home-geo-search"));
       HomeGeoSearch.setPlaceholder("Search for Place");
       HomeGeoSearch.on('result', async data => {
+        setCurrentCity(data.result.place_name);
         const lonLat = data.result.center;
         const result = await GetPopularPlaces(lonLat[0], lonLat[1])
         setPopularPlaces(result);
@@ -96,7 +99,7 @@ function Home(props) {
         </div> */}
       </div>
 
-      <h2 className="PopularPlaces">Popular Places</h2>
+      <h2 className="PopularPlaces">Popular Places in {currentCity}</h2>
       <div className="CardGrid">
         {
           popularPlaces.map((place, index) => (

@@ -77,7 +77,7 @@ function PostExperience(props) {
       description: description.current.value,
       date: new Date().getTime(),
       photos: urls,
-      likes: 0,
+      likes: [],
       commentCount: 0
     };
 

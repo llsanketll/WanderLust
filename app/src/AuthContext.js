@@ -41,6 +41,8 @@ export function AuthProvider({ children }) {
           following: 0,
           posts: 0,
           bio: '',
+          followers: [],
+          following: []
         }
         setDoc(doc(db, 'User', user.uid), dataToUpload);
       }

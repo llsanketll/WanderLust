@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useAuth } from "../AuthContext";
 import { useDatabase } from "../DatabaseContext";
 import CommentCardContainer from "../Styles/CommentCard.styles";
+import ProfileImg from "./ProfileImg";
 
 function CommentCard(props) {
   const { UploadData, getReplies } = useDatabase();
@@ -36,7 +37,7 @@ function CommentCard(props) {
   return (
     <CommentCardContainer>
       <div className="CommentCard-Main">
-        <img src={props.photoURL} alt="Profile Picture" />
+        <ProfileImg uid={props.uid} src={props.photoURL} alt="Profile Picture" />
         <h3>{props.name}</h3>
         <span>{new Date(props.time).toDateString()}</span>
       </div>

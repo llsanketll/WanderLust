@@ -96,11 +96,9 @@ function BlogPost(props) {
     const newBlogData = { ...currentPost };
     setIsLiked(!isLiked);
     if (!newBlogData.likes.includes(currentUser.uid)) {
-      console.log("Liked");
       newBlogData.likes.push(currentUser.uid);
     }
     else {
-      console.log("Unliked");
       //Remove the user from the likes array
       const index = newBlogData.likes.indexOf(currentUser.uid);
       if (index > -1)
