@@ -10,11 +10,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import RoomIcon from '@mui/icons-material/Room';
 import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
+import ProfileInfo from "../Components/ProfileInfo";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDatabase } from "../DatabaseContext";
 import { db } from "../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 function Proflie(props) {
   const [profileUser, setProfileUser] = useState({});
@@ -29,7 +30,10 @@ function Proflie(props) {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const Pages = [
-    <PostDiv uid={uid} setPostCount={setPostCount} />
+    <PostDiv uid={uid} setPostCount={setPostCount} />,
+    <div/>,
+    <div/>,
+    <ProfileInfo/>
   ]
 
   useEffect(async () => {
@@ -53,7 +57,11 @@ function Proflie(props) {
     const followers = [...profileUser.followers];
     const newFollowers = isFollowing ? followers.filter(follower => follower !== currentUser.uid) : [...followers, currentUser.uid];
     await updateDoc(doc(db, "User", profileUser.uid), { followers: newFollowers });
-    setProfileUser({ ...profileUser, followers:newFollowers  });
+    if (!isFollowing)
+      await updateDoc(doc(db, "User", currentUser.uid), { following: arrayUnion(currentUser.uid) });
+    else
+      await updateDoc(doc(db, "User", currentUser.uid), { following: arrayRemove(currentUser.uid) });
+    setProfileUser({ ...profileUser, followers: newFollowers });
   }
 
   const HandleMessageClick = () => {
@@ -74,7 +82,7 @@ function Proflie(props) {
             </div>
             <div className="Profile-FlexBox">
               <div>Following</div>
-              <div>{profileUser.following}</div>
+              <div>{profileUser.following && profileUser.following.length}</div>
             </div>
             <div className="Profile-FlexBox">
               <div>Followers</div>

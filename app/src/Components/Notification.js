@@ -45,7 +45,7 @@ const NotificationContainer = styled.div`
 `;
 
 export default function () {
-  const [canShow, setCanShow] = React.useState(true);
+  const [canShow, setCanShow] = React.useState(false);
   const HandleClick = () => {
     setCanShow(!canShow);
   }
